@@ -55,8 +55,8 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item {{ Request::is('customers') ? 'active' : '' }}">
-            <a class="nav-link" href="{{url('customers')}}">
+          <li class="nav-item {{ Request::is('customer') ? 'active' : '' }}">
+            <a class="nav-link" href="{{url('customer')}}">
               <i class="material-icons">person</i>
               <p>Customers Management</p>
             </a>

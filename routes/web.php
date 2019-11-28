@@ -15,9 +15,7 @@ Route::get('dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('customers', function () {
-    return view('customers');
-});
+Route::resource('customer','CustomerController');
 
 Route::get('details', function () {
     return view('details');
