@@ -14,7 +14,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customers');
+      $customers = Customer::all();
+
+      return view('customers',compact('customers'));
+        //return view('customers');
     }
 
     /**
@@ -68,7 +71,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('customer.edit',compact('customer'));
+        return view('details',compact('customer'));
     }
 
     /**
@@ -88,7 +91,7 @@ class CustomerController extends Controller
           'description' => 'required',
       ]);
 
-      Customer::update($request->all());
+      $customer->update($request->all());
 
       return redirect()->route('customer.index')
                       ->with('success','Customer updated successfully.');

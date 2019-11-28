@@ -9,6 +9,18 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
+          @if ($message = Session::get('success'))
+              <div class="alert alert-success alert-dismissible fade show">
+                  <p>{{ $message }}</p>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          @endif
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <div class="pull-right">
              <a class="btn btn-success" href="{{ route('customer.create') }}"> Add New Customer</a>
           </div>
@@ -26,13 +38,13 @@
                 <table class="table">
                   <thead class=" text-primary">
                     <th>
-                      No
-                    </th>
-                    <th>
                       Full Name
                     </th>
                     <th>
                       Phone
+                    </th>
+                    <th>
+                      Email
                     </th>
                     <th>
                       Address
@@ -44,116 +56,13 @@
                   <tbody>
                     @foreach($customers as $customer)
                       <tr>
-                        <td>{{++$i}}</td>
                         <td>{{$customer->full_name}}</td>
                         <td>{{$customer->phone}}</td>
+                        <td>{{$customer->email}}</td>
                         <td>{{$customer->address}}</td>
                         <td><a class="btn btn-warning btn-sm" href="{{ route('customer.edit',$customer->id) }}"><i class="material-icons">search</i></a></td>
                       </tr>
                     @endforeach
-                    <tr>
-                      <td>
-                        1
-                      </td>
-                      <td>
-                        Dakota Rice
-                      </td>
-                      <td>
-                        081223789329
-                      </td>
-                      <td>
-                        Oud-Turnhout
-                      </td>
-                      <td>
-                        <!-- {{ route('customer.edit',$customer->id) }} -->
-                        <a class="btn btn-warning btn-sm" href="#"><i class="material-icons">search</i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        2
-                      </td>
-                      <td>
-                        Minerva Hooper
-                      </td>
-                      <td>
-                        081223789329
-                      </td>
-                      <td>
-                        Sinaai-Waas
-                      </td>
-                      <td>
-                        <a class="btn btn-warning btn-sm" href="#"><i class="material-icons">search</i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        3
-                      </td>
-                      <td>
-                        Sage Rodriguez
-                      </td>
-                      <td>
-                        081223789329
-                      </td>
-                      <td>
-                        Baileux
-                      </td>
-                      <td>
-                        <a class="btn btn-warning btn-sm" href="#"><i class="material-icons">search</i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        4
-                      </td>
-                      <td>
-                        Philip Chaney
-                      </td>
-                      <td>
-                        081223789329
-                      </td>
-                      <td>
-                        Overland Park
-                      </td>
-                      <td>
-                        <a class="btn btn-warning btn-sm" href="#"><i class="material-icons">search</i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        5
-                      </td>
-                      <td>
-                        Doris Greene
-                      </td>
-                      <td>
-                        081223789329
-                      </td>
-                      <td>
-                        Feldkirchen in Kärnten
-                      </td>
-                      <td>
-                        <a class="btn btn-warning btn-sm" href="#"><i class="material-icons">search</i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        6
-                      </td>
-                      <td>
-                        Mason Porter
-                      </td>
-                      <td>
-                        081223789329
-                      </td>
-                      <td>
-                        Gloucester
-                      </td>
-                      <td>
-                        <a class="btn btn-warning btn-sm" href="#"><i class="material-icons">search</i></a>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>

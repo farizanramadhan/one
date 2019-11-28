@@ -16,9 +16,9 @@
             </a>
           </div>
           <div class="card-body">
-            <h4 class="card-title">Alec Thompson</h4>
+            <h4 class="card-title">{{$customer->full_name}}</h4>
             <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+              {{$customer->description}}
             </p>
           </div>
         </div>
@@ -32,12 +32,14 @@
             <p class="card-category">Don't forget to complete all mandatory data</p>
           </div>
           <div class="card-body">
-            <form>
+            <form action="{{ route('customer.update',$customer->id) }}" method="POST">
+              @csrf
+              @method('PUT')
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Full Name</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" value="{{$customer->full_name}}" name="full_name">
                   </div>
                 </div>
               </div>
@@ -45,7 +47,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Address</label>
-                    <textarea name="address" rows="5" cols="80" class="form-control"></textarea>
+                    <textarea name="address" rows="5" cols="80" class="form-control">{{$customer->address}}</textarea>
                   </div>
                 </div>
               </div>
@@ -53,13 +55,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Phone</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" value="{{$customer->phone}}" name="phone">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Email</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" value="{{$customer->email}}" name="email">
                   </div>
                 </div>
               </div>
@@ -68,18 +70,24 @@
                   <div class="form-group">
                     <div class="form-group">
                       <label class="bmd-label-floating">Description</label>
-                      <textarea class="form-control" rows="5"></textarea>
+                      <textarea class="form-control" rows="5" name="description">{{$customer->description}}</textarea>
                     </div>
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn btn-warning btn-sm pull-left">< Back</button> &nbsp;
-              <button type="submit" class="btn btn-danger btn-sm pull-left">Delete Customer</button>
+              <a class="btn btn-warning btn-sm pull-left" href="{{url('customer')}}">< Back</a> &nbsp;
               <button type="submit" class="btn btn-success btn-sm pull-right">Update Profile</button>
               <div class="clearfix"></div>
             </form>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <form action="{{ route('customer.destroy',$customer->id) }}" method="POST">
+          <button type="submit" class="btn btn-danger btn-sm pull-right">Delete Customer</button>
+        </form>
       </div>
     </div>
   </div>
