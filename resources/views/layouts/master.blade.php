@@ -32,6 +32,9 @@
   <link href="{{asset('css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('demo/demo.css')}}" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+
 </head>
 
 <body class="">
@@ -380,6 +383,12 @@
       md.initDashboardPageCharts();
 
     });
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready( function () {
+      $('#myTable').DataTable();
+    } );
   </script>
 </body>
 
