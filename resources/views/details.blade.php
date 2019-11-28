@@ -86,6 +86,8 @@
     <div class="row">
       <div class="col-md-12">
         <form action="{{ route('customer.destroy',$customer->id) }}" method="POST">
+          @csrf
+          @method('DELETE')
           <button type="submit" class="btn btn-danger btn-sm pull-right">Delete Customer</button>
         </form>
       </div>
