@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
-
+use Auth;
 class CustomerController extends Controller
 {
     /**
@@ -16,8 +16,7 @@ class CustomerController extends Controller
     {
       $customers = Customer::all();
 
-      return view('customers',compact('customers'));
-        //return view('customers');
+      return view('customer.home',compact('customers'));
     }
 
     /**
@@ -27,7 +26,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer-new');
+        return view('customer.create');
     }
 
     /**
@@ -38,17 +37,16 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-      $request->validate([
-          'full_name' => 'required',
-          'address' => 'required',
-          'phone' => 'required',
-          'email' => 'required',
-          'description' => 'required',
-      ]);
-
-      Customer::create($request->all());
-
-      return redirect()->route('customer.index')
+        $customer= Customer::create([
+            'no_ktp' => $request->no_ktp,
+            'full_name' => $request->full_name,
+            'address' =>  $request->address,
+            'phone' => $request->phone,
+            'email' =>  $request->email,
+            'description' =>  $request->description,
+            'created_by' =>  Auth::user()->email,
+        ]);
+        return redirect()->route('customer.index')
                       ->with('success','Customer created successfully.');
     }
 
@@ -71,7 +69,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('details',compact('customer'));
+        return view('customer.edit',compact('customer'));
     }
 
     /**

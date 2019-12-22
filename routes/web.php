@@ -15,7 +15,6 @@ Route::get('dashboard', function () {
     return view('dashboard');
 });
 
-Route::resource('customer','CustomerController');
 
 Route::get('details', function () {
     return view('details');
@@ -26,9 +25,10 @@ Route::get('users', function () {
 });
 
 Route::group(['middleware' => ['auth']], function() {
+    Route::resource('customer','CustomerController');
 
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
