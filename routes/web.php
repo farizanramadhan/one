@@ -20,15 +20,20 @@ Route::get('details', function () {
     return view('details');
 });
 
-Route::get('users', function () {
-    return view('users');
-});
+
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('customer','CustomerController');
+    Route::resource('user','UserController');
+    Route::resource('kavling','KavlingController');
+    Route::resource('order','OrderController');
+    Route::resource('program','ProgramController');
+    Route::resource('project','ProjectController');
+    Route::resource('status','StatusController');
 
 });
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+ Route::get('/', 'HomeController@index')->name('home');
+/* Route::get('/', 'HomeController@index')->name('home'); */

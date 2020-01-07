@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('page-title')
-  Customer Details
+  Kavling Details
 @endsection
 @section('content')
 @if ($errors->any())
@@ -41,21 +41,21 @@
             <p class="card-category">Don't forget to complete all data</p>
           </div>
           <div class="card-body">
-            <form action="{{ route('customer.store') }}" method="POST">
+            <form action="{{ route('kavling.store') }}" method="POST">
               @csrf
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="bmd-label-floating">No KTP</label>
-                    <input type="text" class="form-control" name="no_ktp">
+                    <label class="bmd-label-floating">Name</label>
+                    <input type="text" class="form-control" name="name" required>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="bmd-label-floating">Full Name</label>
-                    <input type="text" class="form-control" name="full_name" required>
+                    <label class="bmd-label-floating">Type</label>
+                    <input type="text" class="form-control" name="type" >
                   </div>
                 </div>
               </div>
@@ -63,24 +63,30 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Address</label>
-                    <textarea name="address" rows="5" cols="80" class="form-control" ></textarea>
+                    <textarea name="address" rows="2" cols="80" class="form-control"></textarea>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-6">
+
+                  {{-- <div class="form-group">
+                    <label class="bmd-label-floating">Project</label>
+                   <select name="project_id" class="form-control selectpicker" >
+                       @foreach ($project as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                       @endforeach
+                   </select>
+                  </div> --}}
                   <div class="form-group">
-                    <label class="bmd-label-floating">Phone</label>
-                    <input type="text" class="form-control" name="phone" >
+                    <label for="exampleFormControlSelect1">Example select</label>
+                    <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
                   </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Email</label>
-                    <input type="text" class="form-control" name="email" >
-                  </div>
-                </div>
-              </div>
+              
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">

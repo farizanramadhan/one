@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
-
+use Auth;
 class ProjectController extends Controller
 {
     /**
@@ -15,6 +15,8 @@ class ProjectController extends Controller
     public function index()
     {
         //
+        $data = Project::all();
+        return view('project.home',compact('data'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('project.create');
     }
 
     /**
@@ -35,7 +37,15 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data= Project::create([
+            'name' => $request->name,
+            'address' =>  $request->address,
+            'availability' => $request->availability,
+            'description' =>  $request->description,
+            'created_by' =>  Auth::user()->email,
+        ]);
+        return redirect()->route('project.index')
+                      ->with('success','Data created successfully.');
     }
 
     /**
@@ -46,7 +56,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('project.show',compact('project'));
     }
 
     /**
@@ -57,7 +67,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('project.edit',compact('project'));
+
     }
 
     /**
@@ -69,7 +80,16 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'availability' => 'required',
+            'description' => 'required',
+        ]);
+        $project->update($request->all());
+
+        return redirect()->route('project.index')
+                        ->with('success','Data updated successfully.');
     }
 
     /**
@@ -80,6 +100,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('project.index')
+                        ->with('success','Data deleted successfully');
     }
 }

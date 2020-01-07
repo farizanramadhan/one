@@ -15,6 +15,12 @@ class CreateKavlingsTable extends Migration
     {
         Schema::create('kavlings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('type');
+            $table->string('description');
+            $table->integer('project_id');
+            $table->string('created_by');
+            $table->string('updated_by');
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('page-title')
-  Customer Details
+  Project Details
 @endsection
 
 @section('content')
@@ -32,7 +32,7 @@
             <p class="card-category">Don't forget to complete all mandatory data</p>
           </div>
           <div class="card-body">
-            <form action="{{ route('customer.update',$customer->id) }}" method="POST">
+            <form action="{{ route('project.update',$project->id) }}" method="POST">
               @csrf
               <input  type="hidden" class="form-control" value="{{Auth::user()->email}}" name="updated_by">
 
@@ -41,7 +41,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Full Name</label>
-                    <input type="text" class="form-control" value="{{$customer->full_name}}" name="full_name">
+                    <input type="text" class="form-control" value="{{$project->name}}" name="name">
                   </div>
                 </div>
               </div>
@@ -49,21 +49,15 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Address</label>
-                    <textarea name="address" rows="5" cols="80" class="form-control">{{$customer->address}}</textarea>
+                    <textarea name="address" rows="5" cols="80" class="form-control">{{$project->address}}</textarea>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-group">
-                    <label class="bmd-label-floating">Phone</label>
-                    <input type="text" class="form-control" value="{{$customer->phone}}" name="phone">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Email</label>
-                    <input type="text" class="form-control" value="{{$customer->email}}" name="email">
+                    <label class="bmd-label-floating">Availability</label>
+                    <input type="text" class="form-control" value="{{$project->availability}}" name="availability">
                   </div>
                 </div>
               </div>
@@ -72,12 +66,12 @@
                   <div class="form-group">
                     <div class="form-group">
                       <label class="bmd-label-floating">Description</label>
-                      <textarea class="form-control" rows="5" name="description">{{$customer->description}}</textarea>
+                      <textarea class="form-control" rows="5" name="description">{{$project->description}}</textarea>
                     </div>
                   </div>
                 </div>
               </div>
-              <a class="btn btn-warning btn-sm pull-left" href="{{url('customer')}}">< Back</a> &nbsp;
+              <a class="btn btn-warning btn-sm pull-left" href="{{url('project')}}">< Back</a> &nbsp;
               <button type="submit" class="btn btn-success btn-sm pull-right">Update Profile</button>
               <div class="clearfix"></div>
             </form>
@@ -87,10 +81,10 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <form action="{{ route('customer.destroy',$customer->id) }}" method="POST">
+        <form action="{{ route('project.destroy',$project->id) }}" method="POST">
           @csrf
           @method('DELETE')
-          <button type="submit" class="btn btn-danger btn-sm pull-right">Delete Customer</button>
+          <button type="submit" class="btn btn-danger btn-sm pull-right">Delete Project</button>
         </form>
       </div>
     </div>

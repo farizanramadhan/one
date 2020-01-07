@@ -46,7 +46,7 @@
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="{{url('/')}}" class="simple-text logo-normal">
           SUWARNAYASA
         </a>
       </div>
@@ -58,16 +58,28 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item {{ Request::is('customer') ? 'active' : '' }}">
-            <a class="nav-link" href="{{url('customer')}}">
+          <li class="nav-item {{ Request::is('customer*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('customer.index')}}">
               <i class="material-icons">person</i>
               <p>Customers Management</p>
             </a>
           </li>
-          <li class="nav-item {{ Request::is('users') ? 'active' : '' }}">
-            <a class="nav-link" href="{{url('users')}}">
+          <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('user.index')}}">
               <i class="material-icons">content_paste</i>
               <p>Users Management</p>
+            </a>
+          </li>
+          <li class="nav-item {{ Request::is('project*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('project.index')}}">
+              <i class="material-icons">content_paste</i>
+              <p>Projects Management</p>
+            </a>
+          </li>
+          <li class="nav-item {{ Request::is('kavling*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('kavling.index')}}">
+              <i class="material-icons">content_paste</i>
+              <p>Kavling Management</p>
             </a>
           </li>
         </ul>
@@ -132,7 +144,12 @@
                   <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="#">
+                    <form id="logout-form" action="{{ url('logout') }}" method="POST">
+                        {{ csrf_field() }}
+                <button type="submit">Logout</button>
+            </form>
+            </a>
                 </div>
               </li>
             </ul>
@@ -156,12 +173,13 @@
           </nav>
           <div class="copyright float-right">
             &copy;
-            2019, by Farizan Ramadhan
+            2019, by Farizan Ramadhan && <a href="https://quem-studio.com">Faqih Salban </a>
           </div>
         </div>
       </footer>
     </div>
   </div>
+</body>
 
   <!--   Core JS Files   -->
   <script src="{{asset('js/core/jquery.min.js')}}"></script>
@@ -208,19 +226,14 @@
   <script src="{{asset('demo/demo.js')}}"></script>
   <script>
     $(document).ready(function() {
-      $().ready(function() {
+        md.initDashboardPageCharts();
+
         $sidebar = $('.sidebar');
-
         $sidebar_img_container = $sidebar.find('.sidebar-background');
-
         $full_page = $('.full-page');
-
         $sidebar_responsive = $('body > .navbar-collapse');
-
         window_width = $(window).width();
-
         fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
         if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
           if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
             $('.fixed-plugin .dropdown').addClass('open');
@@ -374,22 +387,8 @@
           }, 1000);
 
         });
-      });
-    });
-  </script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
 
     });
   </script>
-
-  <script type="text/javascript">
-    $(document).ready( function () {
-      $('#myTable').DataTable();
-    } );
-  </script>
-</body>
-
+  @stack('script')
 </html>

@@ -88,7 +88,6 @@ class CustomerController extends Controller
           'email' => 'required',
           'description' => 'required',
       ]);
-
       $customer->update($request->all());
 
       return redirect()->route('customer.index')

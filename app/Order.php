@@ -4,13 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Program extends Model
+class Order extends Model
 {
     //
     protected $fillable = [
-        'name',
-        'budget',
+        'customer_id',
+        'program_id',
+        'kavling_id',
+        'project_id',
+        'status',
+        'notes',
         'created_by',
         'updated_by',
     ];
+
 }
