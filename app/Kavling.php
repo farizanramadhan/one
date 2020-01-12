@@ -17,4 +17,8 @@ class Kavling extends Model
         'updated_by',
     ];
 
+    public function project()
+    {
+        return $this->belongsTo('App\Project');
+    }
 }

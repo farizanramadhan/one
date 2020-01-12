@@ -49,7 +49,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Type</label>
-                    <textarea name="type" rows="5" cols="80" class="form-control">{{$kavling->type}}</textarea>
+                    <input type="text" name="type" class="form-control"value="{{$kavling->type}}" >
                   </div>
                 </div>
               </div>
@@ -65,7 +65,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Project</label>
-                    <select name="project_id">
+                    <select name="project_id" class="form-control selectpicker">
                         @foreach ($project as $item)
                         @if ($item->id == $kavling->project_id)
                             <option selected value="{{$item->id}}">{{$item->name}}</option>
@@ -80,10 +80,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <div class="form-group">
                       <label class="bmd-label-floating">Description</label>
                       <textarea class="form-control" rows="5" name="description">{{$kavling->description}}</textarea>
-                    </div>
                   </div>
                 </div>
               </div>

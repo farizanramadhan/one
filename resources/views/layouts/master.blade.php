@@ -28,11 +28,11 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
   <!-- CSS Files -->
   <link href="{{asset('css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('demo/demo.css')}}" rel="stylesheet" />
-
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
 
 </head>
@@ -80,6 +80,18 @@
             <a class="nav-link" href="{{route('kavling.index')}}">
               <i class="material-icons">content_paste</i>
               <p>Kavling Management</p>
+            </a>
+          </li>
+          <li class="nav-item {{ Request::is('program*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('program.index')}}">
+              <i class="material-icons">content_paste</i>
+              <p>Program Management</p>
+            </a>
+          </li>
+          <li class="nav-item {{ Request::is('order*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('order.index')}}">
+              <i class="material-icons">content_paste</i>
+              <p>Order Management</p>
             </a>
           </li>
         </ul>
@@ -195,8 +207,10 @@
   <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
   <script src="{{asset('js/plugins/jquery.bootstrap-wizard.js')}}"></script>
   <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-  <script src="{{asset('js/plugins/bootstrap-selectpicker.js')}}"></script>
-  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+{{--   <script src="{{asset('js/plugins/bootstrap-selectpicker.js')}}"></script> --}}
+ <!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+ <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
   <script src="{{asset('js/plugins/bootstrap-datetimepicker.min.js')}}"></script>
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
   <script src="{{asset('js/plugins/jquery.dataTables.min.js')}}"></script>
@@ -226,6 +240,8 @@
   <script src="{{asset('demo/demo.js')}}"></script>
   <script>
     $(document).ready(function() {
+
+
         md.initDashboardPageCharts();
 
         $sidebar = $('.sidebar');

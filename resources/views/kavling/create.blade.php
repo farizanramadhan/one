@@ -67,26 +67,19 @@
                   </div>
                 </div>
               </div>
-
-                  {{-- <div class="form-group">
+              <div class="row">
+                <div class="col-md-12">
+                   <div class="form-group">
                     <label class="bmd-label-floating">Project</label>
                    <select name="project_id" class="form-control selectpicker" >
                        @foreach ($project as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                        @endforeach
                    </select>
-                  </div> --}}
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect1">Example select</label>
-                    <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
                   </div>
-              
+                  </div>
+                </div>
+
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">

@@ -14,7 +14,6 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
         $data = Project::all();
         return view('project.home',compact('data'));
     }
@@ -68,7 +67,6 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         return view('project.edit',compact('project'));
-
     }
 
     /**

@@ -17,5 +17,20 @@ class Order extends Model
         'created_by',
         'updated_by',
     ];
-
+    public function project()
+    {
+        return $this->belongsTo('App\Project');
+    }
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer');
+    }
+    public function program()
+    {
+        return $this->belongsTo('App\Program');
+    }
+    public function kavling()
+    {
+        return $this->belongsTo('App\Kavling');
+    }
 }

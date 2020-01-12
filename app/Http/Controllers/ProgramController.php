@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Program;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,8 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        //
+        $data = Program::all();
+        return view('program.home',compact('data'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        //
+        return view('program.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data= Program::create([
+            'name' => $request->name,
+            'budget' =>  $request->budget,
+            'created_by' =>  Auth::user()->email,
+        ]);
+        return redirect()->route('program.index')
+                      ->with('success','Data created successfully.');
     }
 
     /**
@@ -46,7 +53,7 @@ class ProgramController extends Controller
      */
     public function show(Program $program)
     {
-        //
+        return view('program.show',compact('program'));
     }
 
     /**
@@ -57,7 +64,7 @@ class ProgramController extends Controller
      */
     public function edit(Program $program)
     {
-        //
+        return view('program.edit',compact('program'));
     }
 
     /**
@@ -69,7 +76,14 @@ class ProgramController extends Controller
      */
     public function update(Request $request, Program $program)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'budget' => 'required',
+        ]);
+        $program->update($request->all());
+
+        return redirect()->route('program.index')
+                        ->with('success','Data updated successfully.');
     }
 
     /**
@@ -80,6 +94,8 @@ class ProgramController extends Controller
      */
     public function destroy(Program $program)
     {
-        //
+        $program->delete();
+        return redirect()->route('program.index')
+                        ->with('success','Data deleted successfully');
     }
 }

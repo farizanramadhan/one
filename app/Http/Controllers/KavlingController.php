@@ -15,7 +15,7 @@ class KavlingController extends Controller
      */
     public function index()
     {
-        $data = Kavling::all();
+        $data = Kavling::with('project')->get();
         return view('kavling.home',compact('data'));
     }
 
