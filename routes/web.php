@@ -23,6 +23,10 @@ Route::get('details', function () {
 
 
 Route::group(['middleware' => ['auth']], function() {
+    Route::get('user/updaterole/{id}','UserController@updateRole')->name('user.updaterole');
+
+
+
     Route::resource('customer','CustomerController');
     Route::resource('user','UserController');
     Route::resource('kavling','KavlingController');

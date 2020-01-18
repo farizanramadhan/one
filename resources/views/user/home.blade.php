@@ -33,10 +33,13 @@ Users Management
                                         <td> {{$item->name}}
                                         <td> {{$item->email}}
                                         <td> {{$item->phone}}
-                                        <td> {{$item->role}}
-                                        <td> {{$item->status ? "Enable":"Disable"}}
-                                        <td> <a class="btn btn-warning btn-sm" href="{{route('user.edit',$item->id)}}"><i
-                                                    class="material-icons">search</i></a>
+                                        <td> {{$item->role == 1 ? "Admin" : ($item->role == 2 ? "Sales" : ($item->role == 3 ? "Marketing" : "Undefined")) }}
+                                        <td>@if ($item->status)
+                                            <a class="btn btn-danger btn-sm" href="#" onclick="updateRole('{{$item->id}}',this)" data-toggle="tooltip" title="Disable"><i class="material-icons">lock</i></a>
+                                        @else
+                                            <a class="btn btn-success btn-sm" href="#" onclick="updateRole('{{$item->id}}',this)"data-toggle="tooltip" title="Enable"><i class="material-icons">lock</i></a>
+                                        @endif 
+                                        <td> <a class="btn btn-warning btn-sm" href="{{route('user.edit',$item->id)}}"><i class="material-icons">search</i></a>              
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -49,3 +52,23 @@ Users Management
     </div>
 </div>
 @endsection
+@push('script')
+<script>
+function updateRole(id,row) {
+      $.ajax({
+          type: "GET",
+          url: "{{url('user/updaterole')}}/" + id,
+          success: function (data) {
+              if(data.role){
+                $(row).parents("td").last().html('<a class="btn btn-danger btn-sm" href="#" onclick="updateRole('+data.id+',this)" data-toggle="tooltip" title="Disable"><i class="material-icons">lock</i><div class="ripple-container"></div></a>');
+              }else{
+                $(row).parents("td").last().html('<a class="btn btn-success btn-sm" href="#" onclick="updateRole('+data.id+',this)" data-toggle="tooltip" title="Disable"><i class="material-icons">lock</i><div class="ripple-container"></div></a>');
+              }
+          },
+          error: function (err) {
+              console.log(err);
+          },
+      });
+  }
+</script>
+@endpush

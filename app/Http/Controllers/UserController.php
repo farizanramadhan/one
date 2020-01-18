@@ -59,7 +59,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('user.edit',compact('user'));
     }
 
     /**
@@ -71,7 +71,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+            'status' => 'required',
+            'phone' => 'required',
+        ]);
+        $user->update($request->all());
+  
+        return redirect()->route('user.index')
+                        ->with('success','Customer updated successfully.');
     }
 
     /**
@@ -83,5 +93,15 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+    public function updateRole($id)
+    {
+        $user = User::findOrFail($id);
+         if ($user->role) {
+           $user->update(array('role' => 0));
+        }else{
+           $user->update(array('role' => 1));
+        } 
+        return $user;
     }
 }

@@ -64,10 +64,10 @@
               <p>Customers Management</p>
             </a>
           </li>
-          <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{route('user.index')}}">
+          <li class="nav-item {{ Request::is('order*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('order.index')}}">
               <i class="material-icons">content_paste</i>
-              <p>Users Management</p>
+              <p>Order Management</p>
             </a>
           </li>
           <li class="nav-item {{ Request::is('project*') ? 'active' : '' }}">
@@ -88,10 +88,10 @@
               <p>Program Management</p>
             </a>
           </li>
-          <li class="nav-item {{ Request::is('order*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{route('order.index')}}">
+          <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('user.index')}}">
               <i class="material-icons">content_paste</i>
-              <p>Order Management</p>
+              <p>Users Management</p>
             </a>
           </li>
         </ul>
