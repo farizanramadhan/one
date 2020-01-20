@@ -73,3 +73,11 @@
     </div>
   </div>
 @endsection
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#myTable').DataTable({
+        responsive: true
+      });
+  } );
+</script>
+@endpush

@@ -1,7 +1,10 @@
 @extends('layouts.master')
 @section('page-title')
-  Kavling Details
+  Create Order
 @endsection
+@push('style')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @section('content')
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -29,7 +32,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Customer</label>
-                    <select name="customer_id" class="form-control selectpicker" >
+                    <select name="customer_id" class="form-control select2" >
                         @foreach ($customer as $item)
                          <option value="{{$item->id}}">{{$item->full_name}}</option>
                         @endforeach
@@ -41,7 +44,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Project</label>
-                    <select name="project_id" class="form-control selectpicker" >
+                    <select name="project_id" class="form-control select2" >
                         @foreach ($project as $item)
                          <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
@@ -49,23 +52,23 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Kavling</label>
-                    <select name="kavling_id" class="form-control selectpicker" >
+                    <select name="kavling_id" class="form-control select2" >
                         @foreach ($kavling as $item)
                          <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
                     </select>
                   </div>
                 </div>
-              </div>
+              </div> 
               <div class="row">
                 <div class="col-md-12">
                    <div class="form-group">
                     <label class="bmd-label-floating">Program</label>
-                   <select name="program_id" class="form-control selectpicker" >
+                   <select name="program_id" class="form-control select2" >
                        @foreach ($program as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                        @endforeach
@@ -77,10 +80,14 @@
                     <div class="col-md-12">
                        <div class="form-group">
                         <label class="bmd-label-floating">Status</label>
-                       <select name="status" class="form-control selectpicker" >
-                           <option value="Pesan">Pesan</option>
+                       <select name="status" class="form-control select2" >
+                           <option value="Call">Call</option>
+                           <option value="WalkIn">WalkIn</option>
+                           <option value="Meeting">Meeting</option>
+                           <option value="Visit">Visit</option>
                            <option value="Booking">Booking</option>
                            <option value="Akad">Akad</option>
+                           <option value="Reject">Reject</option>
                           {{--  @foreach ($program as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
                            @endforeach --}}
@@ -110,3 +117,16 @@
   </div>
 </div>
 @endsection
+
+@push('script')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+
+    <script>
+     $(document).ready(function () {
+      $('.select2').select2({
+            placeholder: 'Cari Provinsi...',
+        });
+
+    });
+    </script>
+@endpush

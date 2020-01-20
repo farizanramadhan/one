@@ -15,24 +15,6 @@
 @endif
 <div class="content">
   <div class="container-fluid">
- {{--    <div class="row">
-      <div class="col-md-12">
-        <div class="card card-profile">
-          <div class="card-avatar">
-            <a href="#pablo">
-              <img class="img" src="{{asset('img/faces/marc.jpg')}}" />
-            </a>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">New Customer</h4>
-            <p class="card-description">
-              Customer's Description
-            </p>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-
     <div class="row">
       <div class="col-md-12">
         <div class="card">

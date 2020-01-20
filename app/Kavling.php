@@ -13,6 +13,7 @@ class Kavling extends Model
         'address',
         'description',
         'project_id',
+        'location',
         'created_by',
         'updated_by',
     ];

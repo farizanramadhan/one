@@ -24,7 +24,9 @@ Route::get('details', function () {
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('user/updaterole/{id}','UserController@updateRole')->name('user.updaterole');
-
+    Route::get('customer/getktp', 'CustomerController@getKtp')->name('customer.getKtp');
+    Route::post('customer/getcity', 'CustomerController@getCity')->name('customer.getCity');
+    Route::post('customer/getdistric', 'CustomerController@getDistric')->name('customer.getDistric');
 
 
     Route::resource('customer','CustomerController');

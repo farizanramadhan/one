@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Customer;
 use Illuminate\Http\Request;
 use Auth;
+use Indonesia;
+use DB;
 class CustomerController extends Controller
 {
     /**
@@ -14,6 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
+     
       $customers = Customer::all();
 
       return view('customer.home',compact('customers'));
@@ -26,7 +29,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.create');
+        $provinsi = Indonesia::allProvinces();
+        return view('customer.create',compact('provinsi'));
     }
 
     /**
@@ -41,6 +45,9 @@ class CustomerController extends Controller
             'no_ktp' => $request->no_ktp,
             'full_name' => $request->full_name,
             'address' =>  $request->address,
+            'province' =>  $request->province,
+            'city' =>  $request->city,
+            'distric' =>  $request->distric,
             'phone' => $request->phone,
             'email' =>  $request->email,
             'description' =>  $request->description,
@@ -106,5 +113,47 @@ class CustomerController extends Controller
 
       return redirect()->route('customer.index')
                       ->with('success','Customer deleted successfully');
+    }
+    public function getKtp(Request $request)
+    {
+        $queri = $request->input('query');
+        $hasil =  Customer::select("no_ktp")
+                ->where("no_ktp","LIKE","{$request->input('query')}%")
+                ->get(); 
+                $data = array();
+                foreach ($hasil as $hsl)
+                    {
+                        $data[] = $hsl->no_ktp;
+                    }
+               /*  $data = DB::select('select no_ktp from customers where no_ktp LIKE "'.$queri.'%"'); */
+        return response()->json($data);
+    }
+    public function getCity(Request $request)
+    {
+        if ($request->has('q')) {
+            if ($request->q) {
+            $cari = $request->q;
+            $hasil = Indonesia::findProvince($cari, $with = 'cities');
+            $data = $hasil->cities;
+            return response()->json($data,200);
+            }
+            return response()->json(null,200);
+        }
+        return response()->json(null,200);
+
+    }
+    public function getDistric(Request $request)
+    {
+        if ($request->has('q')) {
+            if ($request->q) {
+                $cari = $request->q;
+                $hasil = Indonesia::findCity($cari, $with = 'districts');
+                $data = $hasil->districts;
+                return response()->json($data,200);
+            }
+        return response()->json(null,200);
+           
+        }
+        return response()->json(null,200);
     }
 }
