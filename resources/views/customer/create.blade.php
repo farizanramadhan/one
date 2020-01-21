@@ -66,7 +66,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">Kota</label>
-                    <select name="city" id="city" class="form-control">
+                    <select name="city" id="city" class="form-control select2">
                       <option value="">Please Select Provinsi First</option>
                     </select>
                   </div>
@@ -74,7 +74,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">Kecamatan</label>
-                    <select name="distric" id="distric" class="form-control">
+                    <select name="distric" id="distric" class="form-control select2">
                       <option value="">Please Select Kota First</option>
                     </select>
                   </div>
@@ -119,7 +119,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 <script>
   $(document).ready(function () {
-        $('#provinsi').select2({
+        $('.select2').select2({
             placeholder: 'Cari Provinsi...',
         });
   var path = "{{ route('customer.getKtp') }}";

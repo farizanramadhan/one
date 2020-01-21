@@ -42,6 +42,8 @@ class KavlingController extends Controller
             'name' => $request->name,
             'address' =>  $request->address,
             'type' => $request->type,
+            'location' => $request->location,
+            'price' => $request->price,
             'description' =>  $request->description,
             'project_id' =>  $request->project_id,
             'created_by' =>  Auth::user()->email,

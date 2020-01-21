@@ -34,14 +34,14 @@
   <!-- CSS Files -->
   <link href="{{asset('css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{asset('demo/demo.css')}}" rel="stylesheet" />
+{{--   <link href="{{asset('demo/demo.css')}}" rel="stylesheet" /> --}}
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
   @stack('style')
 </head>
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{asset('img/sidebar-1.jpg')}}">
+    <div class="sidebar" data-color="orange" data-background-color="orange" data-image="{{asset('img/sidebar-4.jpg')}}">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 

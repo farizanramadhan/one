@@ -19,40 +19,37 @@
           @endif
         </div>
       </div>
-      <div class="row">
+    {{--   <div class="row">
         <div class="col-md-12">
           <div class="pull-right">
              <a class="btn btn-success" href="{{ route('customer.create') }}"> Add New Customer</a>
           </div>
         </div>
-      </div>
+      </div> --}}
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header card-header-primary">
-              <h4 class="card-title ">List of Customers</h4>
-              <p class="card-category">Select action for more information</p>
+            <div class="card-header card-header-primary row">
+                <div class="col-md-6"> <h4 class="card-title">List of Customers</h4>
+                    <p class="card-category">Select action for more information</p></div>
+                <div class="col-md-6"><div class="pull-right ">
+                    <a class="btn btn-secondary" href="{{ route('customer.create') }}"> Add New Customer</a>
+                 </div></div>
+
+
+
+
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table" id="myTable">
-                  <thead class=" text-primary">
-                    <th>
-                      Full Name
-                    </th>
-                    <th>
-                      Phone
-                    </th>
-                    <th>
-                      Email
-                    </th>
-                    <th>
-                      Address
-                    </th>
-                    <th width="20%">
-                      Action
-                    </th>
-                  </thead>
+
+                <table class="table table-hover table-striped w-100" id="myTable">
+                  <thead >
+                    <th>Full Name
+                    <th>Phone
+                    <th>Email
+                    <th>Address
+                    <th>Action
+                    </thead>
                   <tbody>
                     @foreach($customers as $customer)
                       <tr>
@@ -65,7 +62,6 @@
                     @endforeach
                   </tbody>
                 </table>
-              </div>
             </div>
           </div>
         </div>
@@ -73,6 +69,8 @@
     </div>
   </div>
 @endsection
+@push('script')
+
 <script type="text/javascript">
   $(document).ready( function () {
     $('#myTable').DataTable({

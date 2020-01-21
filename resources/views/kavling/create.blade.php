@@ -53,7 +53,7 @@
                 <div class="col-md-12">
                    <div class="form-group">
                     <label class="bmd-label-floating">Project</label>
-                   <select name="project_id" class="form-control selectpicker" >
+                   <select name="project_id" class="form-control" >
                        @foreach ($project as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                        @endforeach
@@ -61,7 +61,22 @@
                   </div>
                   </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Price</label>
+                        <input type="text" class="form-control" name="price" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Location</label>
+                        <input type="text" class="form-control" name="location" disabled>
+                      </div>
+                    </div>
+                  </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">

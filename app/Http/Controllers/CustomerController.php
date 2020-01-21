@@ -16,7 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-     
+
       $customers = Customer::all();
 
       return view('customer.home',compact('customers'));
@@ -76,7 +76,8 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('customer.edit',compact('customer'));
+        $provinsi = Indonesia::allProvinces();
+        return view('customer.edit',compact('customer','provinsi'));
     }
 
     /**
@@ -119,7 +120,7 @@ class CustomerController extends Controller
         $queri = $request->input('query');
         $hasil =  Customer::select("no_ktp")
                 ->where("no_ktp","LIKE","{$request->input('query')}%")
-                ->get(); 
+                ->get();
                 $data = array();
                 foreach ($hasil as $hsl)
                     {
@@ -152,7 +153,7 @@ class CustomerController extends Controller
                 return response()->json($data,200);
             }
         return response()->json(null,200);
-           
+
         }
         return response()->json(null,200);
     }

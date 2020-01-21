@@ -7,23 +7,6 @@
 @section('content')
 <div class="content">
   <div class="container-fluid">
-    {{-- <div class="row">
-      <div class="col-md-12">
-        <div class="card card-profile">
-          <div class="card-avatar">
-            <a href="#pablo">
-              <img class="img" src="{{asset('img/faces/marc.jpg')}}" />
-            </a>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">{{$customer->full_name}}</h4>
-            <p class="card-description">
-              {{$customer->description}}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div> --}}
     <div class="row">
       <div class="col-md-12">
         <div class="card">
@@ -50,6 +33,39 @@
                   <div class="form-group">
                     <label class="bmd-label-floating">Address</label>
                     <textarea name="address" rows="5" cols="80" class="form-control">{{$customer->address}}</textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Provinsi</label>
+                    <select name="province" id="province" class="form-control select2">
+                      @foreach ($provinsi as $item)
+                      @if ($item->id==$customer->province)
+                      <option value="{{$item->id}}" selected>{{$item->name}}</option>
+                      @else
+                      <option value="{{$item->id}}">{{$item->name}}</option>
+                      @endif
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Kota</label>
+                    <select name="city" id="city" class="form-control select2">
+                        <option value="{{$customer->distric}}" selected>{{$customer->distric}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Kecamatan</label>
+                    <select name="distric" id="distric" class="form-control select2">
+                        <option value="{{$customer->distric}}" selected>{{$customer->distric}}</option>
+
+                    </select>
                   </div>
                 </div>
               </div>
