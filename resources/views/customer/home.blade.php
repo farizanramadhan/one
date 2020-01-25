@@ -35,10 +35,6 @@
                 <div class="col-md-6"><div class="pull-right ">
                     <a class="btn btn-secondary" href="{{ route('customer.create') }}"> Add New Customer</a>
                  </div></div>
-
-
-
-
             </div>
             <div class="card-body">
 

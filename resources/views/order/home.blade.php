@@ -40,7 +40,6 @@
                     <th>Customer
                     <th>Project
                     <th>Kavling
-                    <th>Program
                     <th>Status
                     <th>Creator
                     <th width="20%">Action
@@ -49,12 +48,12 @@
                     @foreach($data as $item)
                       <tr>
                         <td>{{$item->customer->full_name}}</td>
-                        <td>{{$item->program->name}}</td>
+                        <td>{{$item->project->name}}</td>
                         <td>{{$item->kavling->name}}</td>
-                        <td>{{$item->program->name}}</td>
                         <td>{{$item->status}}</td>
                         <td>{{$item->created_by}}</td>
-                        <td><a class="btn btn-warning btn-sm" href="{{ route('order.edit',$item ?? ''->id) }}"><i class="material-icons">search</i></a></td>
+                        <td><a class="btn btn-warning btn-sm btn-round" href="{{ route('order.edit',$item ?? ''->id) }}" title="Edit"><i class="material-icons">edit</i></a>
+                        <a class="btn btn-info btn-sm btn-round" href="{{ route('order.show',$item ?? ''->id) }}" title="Show"><i class="material-icons">search</i></a></td>
                       </tr>
                     @endforeach
                   </tbody>

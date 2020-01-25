@@ -16,6 +16,11 @@ class Order extends Model
         'notes',
         'created_by',
         'updated_by',
+        'type_cash',
+        'source_fund',
+        'promo',
+        'motive',
+        'purpose',
     ];
     public function project()
     {
@@ -32,5 +37,9 @@ class Order extends Model
     public function kavling()
     {
         return $this->belongsTo('App\Kavling');
+    }
+    public function orderHistory()
+    {
+        return $this->hasMany('App\OrderHistory');
     }
 }
