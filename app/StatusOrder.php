@@ -9,6 +9,8 @@ class StatusOrder extends Model
     protected $table = 'status_orders';
     protected $fillable = [
         'name',
+        'icons',
+
         'parent',
         'created_at',
         'updated_at',

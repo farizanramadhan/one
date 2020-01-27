@@ -4,6 +4,8 @@
 @endsection
 @push('style')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+ <link href="{{asset('css/timeline.css')}}" rel="stylesheet" />
+
 @endpush
 @section('content')
 <div class="content">
@@ -97,13 +99,47 @@
                     <p class="card-category">Select action for more information</p>
                 </div>
                 <div class="col-md-6"><div class="pull-right">
-              {{--   <a class="btn btn-secondary" href="{{ route('order.status.create') }}"> Change Status</a> --}}
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Change Status</button>
+                    @if ($order->status_id != 13 && $order->status_id != 10 && $order->status_id != 11 )
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Change Status</button>
+                    @endif
                 </div>
             </div>
             </div>
             <div class="card-body">
-                <div class="row">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="display:inline-block;width:100%;overflow-y:auto;">
+                            <ul class="timeline timeline-horizontal">
+
+                                @foreach ($order->orderHistory as $item)
+                               <li class="timeline-item">
+                                <div class="timeline-badge primary"><i class="material-icons">{{$item->icons}}</i></div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h3 class="timeline-title">{{$item->name}}</h3>
+                                        <p><small class="text-muted" style="font-size: 100%;">
+                                            <i style=" vertical-align: middle;" class="material-icons">watch_later</i>
+                                            {{$item->created_at}}
+                                            </small>
+                                        </p>
+                                        <p><small class="text-muted" style="font-size: 100%;">
+                                            <i style=" vertical-align: middle;" class="material-icons">person</i>
+                                            {{$item->created_by}}
+                                            </small>
+                                        </p>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>{{$item->notes}}</p>
+                                    </div>
+                                </div>
+                                </li>
+                               @endforeach
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+
+               {{--  <div class="row">
                     <div class="col-md-12">
                         <button title="Start" rel="tooltip" type="button" class="btn btn-primary btn-lg btn-round" style="padding:1.125rem;"><i class="material-icons">person</i></button>
 
@@ -112,7 +148,7 @@
                         <button title="{{$item->name}}" rel="tooltip" type="button" class="btn btn-primary btn-lg btn-round" style="padding:1.125rem;"><i class="material-icons">person</i></button>
                         @endforeach
                     </div>
-                </div>
+                </div> --}}
             </div>
           </div>
 
@@ -140,7 +176,7 @@ aria-hidden="true">
                     <label class="bmd-label-floating">Status</label>
                     <select name="status" class="form-control ">
                         @foreach ($status as $item)
-                        @if ($item->parent == $order->status)
+                        @if ($item->parent == $order->status_id)
                             <option value="{{$item->id}}">{{$item->name}}</option>
                         @endif
                         @endforeach
@@ -148,7 +184,7 @@ aria-hidden="true">
                 </div>
                 <div class="form-group ">
                     <label class="form-label right">Notes</label>
-                    <input type="notes" name="name" class="form-control" required>
+                    <input type="text" name="notes" class="form-control" required>
                 </div>
             </div>
             <div class="modal-footer">

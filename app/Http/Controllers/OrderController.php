@@ -21,8 +21,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-
-        $data = Order::with('project','customer','program','kavling','orderHistory')->get();
+        $data = Order::all();
         return view('order.home',compact('data'));
     }
 
@@ -40,20 +39,23 @@ class OrderController extends Controller
     }
     public function historyStore(Request $request)
     {
+        return $request;
         $statusName = StatusOrder::find($request->status);
+        $order = Order::find($request->order_id);
         $detail = OrderHistory::create([
             'order_id' =>  $request->order_id,
             'status' =>  $request->status,
             'notes' =>  $request->notes,
             'name' =>  $statusName->name,
+            'icons' =>  $statusName->icons,
             'created_by' =>  Auth::user()->email,
             'updated_by' =>  Auth::user()->email,
         ]);
-        Order::where('id', $request->order_id)
-          ->update(['status' => $request->status]);
+        $order->update(['status_id' => $request->status]);
+        Kavling::where('id', $order->kavling_id)->update(['status_id' => $request->status]);
+
         return redirect()->route('order.show',$detail->order_id)
                       ->with('success','Order created successfully.');
-
     }
     /**
      * Store a newly created resource in storage.
@@ -64,7 +66,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
-       return $data= Order::create([
+        $data= Order::create([
             'customer_id' =>  $request->customer_id,
             'kavling_id' =>  $request->kavling_id,
             'project_id' =>  $request->project_id,
@@ -74,18 +76,21 @@ class OrderController extends Controller
             'purpose' =>  $request->purpose,
             'promo' =>  $request->promo,
             'notes' =>  $request->notes,
-            'status' =>  1,
+            'status_id' =>  1,
             'created_by' =>  Auth::user()->email,
             'updated_by' =>  Auth::user()->email,
         ]);
+
        $detail = OrderHistory::create([
             'order_id' =>  $data->id,
             'status' =>  1,
             'notes' =>  $request->notes,
             'name' =>  'Booking',
+            'icons' =>  'add_shopping_cart',
             'created_by' =>  Auth::user()->email,
             'updated_by' =>  Auth::user()->email,
         ]);
+        Kavling::where('id', $request->kavling_id)->update(['status_id' => 1]);
         return redirect()->route('order.index')
                       ->with('success','Order created successfully.');
     }
@@ -98,13 +103,6 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-    /*
-        $project = Project::all();
-        $customer = Customer::all();
-         $kavling = Kavling::all(); */
-  /*        $order = Order::with('OrderHistory')->where('id',$order->id)->get(); */
-
-
         $status = StatusOrder::all();
         return view('order.show',compact('status','order'));
     }

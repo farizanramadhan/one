@@ -17,5 +17,7 @@ class OrderHistory extends Model
         'created_at',
         'updated_at',
         'notes',
+        'icons',
+
     ];
 }

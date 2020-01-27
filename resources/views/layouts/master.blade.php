@@ -28,7 +28,8 @@
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+ {{--  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" /> --}}
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
   <!-- CSS Files -->
@@ -87,7 +88,7 @@
           <li class="nav-item {{ Request::is('program*') ? 'active' : '' }}">
             <a class="nav-link" href="{{route('program.index')}}">
               <i class="material-icons">content_paste</i>
-              <p>Program Management</p>
+              <p>Sumber Informasi</p>
             </a>
           </li>
           <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">

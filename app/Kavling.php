@@ -15,7 +15,7 @@ class Kavling extends Model
         'project_id',
         'location',
         'price',
-        'status',
+        'status_id',
         'created_by',
         'updated_by',
     ];

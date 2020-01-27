@@ -118,7 +118,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                       <label class="bmd-label-floating">Notes</label>
-                      <textarea class="form-control" rows="4" name="notes" ></textarea>
+                      <input type="text" name="notes" class="form-control">
                   </div>
                 </div>
               </div>

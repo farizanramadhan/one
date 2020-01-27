@@ -12,7 +12,7 @@ class Order extends Model
         'program_id',
         'kavling_id',
         'project_id',
-        'status',
+        'status_id',
         'notes',
         'created_by',
         'updated_by',
@@ -41,5 +41,9 @@ class Order extends Model
     public function orderHistory()
     {
         return $this->hasMany('App\OrderHistory');
+    }
+    public function status()
+    {
+        return $this->belongsTo('App\StatusOrder');
     }
 }

@@ -37,22 +37,24 @@
               <div class="table-responsive">
                 <table class="table" id="myTable">
                   <thead class=" text-primary">
-                    <th>Customer
+                    <th>KTP
+                        <th>Customer
                     <th>Project
                     <th>Kavling
                     <th>Status
                     <th>Creator
-                    <th width="20%">Action
+                    <th>Action
                   </thead>
                   <tbody>
                     @foreach($data as $item)
                       <tr>
+                        <td>{{$item->customer->no_ktp}}</td>
                         <td>{{$item->customer->full_name}}</td>
                         <td>{{$item->project->name}}</td>
                         <td>{{$item->kavling->name}}</td>
-                        <td>{{$item->status}}</td>
+                        <td>{{$item->status->name}}</td>
                         <td>{{$item->created_by}}</td>
-                        <td><a class="btn btn-warning btn-sm btn-round" href="{{ route('order.edit',$item ?? ''->id) }}" title="Edit"><i class="material-icons">edit</i></a>
+                        <td>{{-- <a class="btn btn-warning btn-sm btn-round" href="{{ route('order.edit',$item ?? ''->id) }}" title="Edit"><i class="material-icons">edit</i></a> --}}
                         <a class="btn btn-info btn-sm btn-round" href="{{ route('order.show',$item ?? ''->id) }}" title="Show"><i class="material-icons">search</i></a></td>
                       </tr>
                     @endforeach
