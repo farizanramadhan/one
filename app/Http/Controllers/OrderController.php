@@ -39,7 +39,6 @@ class OrderController extends Controller
     }
     public function historyStore(Request $request)
     {
-        return $request;
         $statusName = StatusOrder::find($request->status);
         $order = Order::find($request->order_id);
         $detail = OrderHistory::create([
