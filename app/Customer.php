@@ -8,6 +8,7 @@ class Customer extends Model
 {
   protected $fillable = [
       'no_ktp',
+      'no_npwp',
       'full_name',
       'address',
       'province',
@@ -16,8 +17,14 @@ class Customer extends Model
       'email',
       'phone',
       'ktp_file',
+      'income',
+      'program_is',
+      'status',
       'description',
       'created_by',
       'updated_by',
   ];
+  protected $casts = [
+    'status' => 'array',
+];
 }

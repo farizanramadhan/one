@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Program;
 use Illuminate\Http\Request;
 use Auth;
 use Indonesia;
 use DB;
+use Carbon\Carbon;
 class CustomerController extends Controller
 {
     /**
@@ -30,7 +32,8 @@ class CustomerController extends Controller
     public function create()
     {
         $provinsi = Indonesia::allProvinces();
-        return view('customer.create',compact('provinsi'));
+        $programs = Program::all();
+        return view('customer.create',compact('provinsi','programs'));
     }
 
     /**
@@ -41,8 +44,15 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        $status = collect([['project_id' => null,
+        'result' => 'Start',
+        'status' => 'Start',
+        'created_at' => Carbon::now(),
+        'created_by' =>  Auth::user()->email,
+        ]]);
         $customer= Customer::create([
             'no_ktp' => $request->no_ktp,
+            'no_npwp' => $request->no_npwp,
             'full_name' => $request->full_name,
             'address' =>  $request->address,
             'province' =>  $request->province,
@@ -50,9 +60,14 @@ class CustomerController extends Controller
             'distric' =>  $request->distric,
             'phone' => $request->phone,
             'email' =>  $request->email,
+            'income' =>  $request->income,
+            'status' =>  $status,
+            'program_id' =>  $request->program_id,
             'description' =>  $request->description,
             'created_by' =>  Auth::user()->email,
         ]);
+
+
         return redirect()->route('customer.index')
                       ->with('success','Customer created successfully.');
     }
@@ -65,6 +80,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
+
         return view('customer.show',compact('customer'));
     }
 
@@ -76,6 +92,17 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
+/*         $status = collect(['project_id' => 1,
+        'result' => 'Berminat',
+        'status' => 'Call In',
+        'created_at' => Carbon::now(),
+        'created_by' =>  Auth::user()->email,
+        ]);
+        return $customer->status;
+        $customer->status->push($status);
+        $customer->save();
+
+        return $customer; */
         $provinsi = Indonesia::allProvinces();
         return view('customer.edit',compact('customer','provinsi'));
     }
@@ -115,6 +142,23 @@ class CustomerController extends Controller
       return redirect()->route('customer.index')
                       ->with('success','Customer deleted successfully');
     }
+
+    public function updateFU(Request $request)
+    {
+        $status = collect([['project_id' => $request->project_id,
+        'result' => $request->result,
+        'status' => $request->status,
+        'created_at' => Carbon::now(),
+        'created_by' =>  Auth::user()->email,
+        ]]);
+        $customer = Customer::find($request->customer_id);
+        $customer->status->push($status);
+        $customer->save();
+        return $customer;
+    /*   return redirect()->route('customer.index')
+                      ->with('success','Customer updated successfully.'); */
+    }
+
     public function getKtp(Request $request)
     {
         $queri = $request->input('query');

@@ -29,17 +29,23 @@
             <form action="{{ route('customer.store') }}" method="POST">
               @csrf
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6 col-sm-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">No KTP</label>
                     <input type="text" id="no_ktp" class="form-control typeahead" name="no_ktp" data-provide="typeahead" >
                   </div>
                 </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">No NPWP</label>
+                      <input type="text" id="no_npwp" class="form-control" name="no_npwp">
+                    </div>
+                  </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="bmd-label-floating">Full Name</label>
+                    <label class="bmd-label-floating">Nama Lengkap</label>
                     <input type="text" class="form-control" name="full_name" >
                   </div>
                 </div>
@@ -47,8 +53,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="bmd-label-floating">Address</label>
-                    <textarea name="address" rows="5" cols="80" class="form-control" ></textarea>
+                    <label class="bmd-label-floating">Alamat</label>
+                    <input type="text" name="address" class="form-control">
                   </div>
                 </div>
               </div>
@@ -83,7 +89,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="bmd-label-floating">Phone</label>
+                    <label class="bmd-label-floating">No Telepon</label>
                     <input type="text" class="form-control" name="phone" >
                   </div>
                 </div>
@@ -95,11 +101,29 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Penghasilan</label>
+                    <input type="text" class="form-control" name="income" >
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Sumber Informasi</label>
+                    <select name="program_id" id="program_id" class="form-control">
+                        @foreach ($programs as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                     <div class="form-group">
                       <label class="bmd-label-floating">Description</label>
-                      <textarea class="form-control" rows="5" name="description" ></textarea>
+                      <textarea class="form-control" rows="3" name="description" ></textarea>
                     </div>
                   </div>
                 </div>
@@ -119,21 +143,25 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 <script>
   $(document).ready(function () {
-        $('.select2').select2({
-            placeholder: 'Cari Provinsi...',
-        });
-  var path = "{{ route('customer.getKtp') }}";
-  $('#no_ktp .typeahead').typeahead(null,{
-    name:'KTP',
-    source: function (query, process) {
-            return $.getJSON(path,
-                { query: query },
-                function (data) {
-                    console.log(data)
-                    return process(data);
-                })
-        },
-  });
+    $('.select2').select2({
+        placeholder: 'Cari Provinsi...',
+    });
+    $('#program_id').select2({
+        placeholder: 'Cari Sumber',
+    });
+    //untuk autocomplete no ktp, asu gagal terus
+    var path = "{{ route('customer.getKtp') }}";
+    $('#no_ktp .typeahead').typeahead(null,{
+        name:'KTP',
+        source: function (query, process) {
+                return $.getJSON(path,
+                    { query: query },
+                    function (data) {
+                        console.log(data)
+                        return process(data);
+                    })
+            },
+    });
 
   $("#province").change(function () {
     console.log(this.value);
@@ -162,8 +190,10 @@
         });
     });
     $("#city").change(function () {
-      console.log(this.value);
-        $.ajax({
+        console.log();
+
+        if (this.value != null) {
+            $.ajax({
             type: 'POST',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -185,9 +215,11 @@
             error: function (err) {
                 console.log(err);
             },
-        });
+            });
+        }
+
     });
   });
-  
+
 </script>
 @endpush
