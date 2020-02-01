@@ -19,19 +19,17 @@
           @endif
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="pull-right">
-             <a class="btn btn-success" href="{{ route('kavling.create') }}"> Add New Kavling</a>
-          </div>
-        </div>
-      </div>
+
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header card-header-primary">
-              <h4 class="card-title ">List of Kavling</h4>
-              <p class="card-category">Select action for more information</p>
+            <div class="card-header card-header-primary row">
+                <div class="col-md-6"> <h4 class="card-title">List of Kavling</h4>
+                    <p class="card-category">Select action for more information</p></div>
+                <div class="col-md-6"><div class="pull-right ">
+                    <a class="btn btn-secondary" href="{{ route('kavling.create') }}"> Add New Kavling</a>
+                 </div>
+                </div>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -40,8 +38,8 @@
                     <th>Kavling Name
                     <th>Type
                     <th>Project
-                    <th>Description
-                    <th width="20%">Action
+                        <th>Status
+                    <th >Action
                   </thead>
                   <tbody>
                     @foreach($data as $item)
@@ -49,8 +47,8 @@
                         <td>{{$item->name}}</td>
                         <td>{{$item->type}}</td>
                         <td>{{$item->project->name}}</td>
-                        <td>{{$item->description}}</td>
-                        <td><a class="btn btn-warning btn-sm" href="{{ route('kavling.edit',$item ?? ''->id) }}"><i class="material-icons">search</i></a></td>
+                        <td>{{$item->status->name}}</td>
+                        <td><a class="btn btn-warning btn-sm btn-round" href="{{ route('kavling.edit',$item ?? ''->id) }}"><i class="material-icons">edit</i></a></td>
                       </tr>
                     @endforeach
                   </tbody>

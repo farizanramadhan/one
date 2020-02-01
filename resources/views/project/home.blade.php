@@ -19,19 +19,17 @@
           @endif
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="pull-right">
-             <a class="btn btn-success" href="{{ route('project.create') }}"> Add New Customer</a>
-          </div>
-        </div>
-      </div>
+
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header card-header-primary">
-              <h4 class="card-title ">List of Customers</h4>
-              <p class="card-category">Select action for more information</p>
+            <div class="card-header card-header-primary row">
+                <div class="col-md-6"> <h4 class="card-title">List of Projects</h4>
+                    <p class="card-category">Select action for more information</p></div>
+                <div class="col-md-6"><div class="pull-right ">
+                    <a class="btn btn-secondary" href="{{ route('project.create') }}"> Add New Project</a>
+                 </div>
+                </div>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -50,7 +48,7 @@
                         <td>{{$item->address}}</td>
                         <td>{{$item->availability}}</td>
                         <td>{{$item->description}}</td>
-                        <td><a class="btn btn-warning btn-sm" href="{{ route('project.edit',$item ?? ''->id) }}"><i class="material-icons">search</i></a></td>
+                        <td><a class="btn btn-warning btn-sm btn-round" href="{{ route('project.edit',$item ?? ''->id) }}"><i class="material-icons">edit</i></a></td>
                       </tr>
                     @endforeach
                   </tbody>

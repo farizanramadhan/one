@@ -19,13 +19,6 @@
           @endif
         </div>
       </div>
-    {{--   <div class="row">
-        <div class="col-md-12">
-          <div class="pull-right">
-             <a class="btn btn-success" href="{{ route('customer.create') }}"> Add New Customer</a>
-          </div>
-        </div>
-      </div> --}}
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -53,7 +46,9 @@
                         <td>{{$customer->phone}}</td>
                         <td>{{$customer->email}}</td>
                         <td>{{$customer->address}}</td>
-                        <td><a class="btn btn-warning btn-sm" href="{{ route('customer.edit',$customer->id) }}"><i class="material-icons">search</i></a></td>
+                        <td>
+                        <a class="btn btn-info btn-sm btn-round" href="{{ route('customer.show',$customer ?? ''->id) }}" title="Show"><i class="material-icons">search</i></a>
+                        <a class="btn btn-warning btn-sm btn-round" href="{{ route('customer.edit',$customer->id) }}"><i class="material-icons">edit</i></a></td>
                       </tr>
                     @endforeach
                   </tbody>

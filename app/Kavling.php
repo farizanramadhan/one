@@ -24,4 +24,8 @@ class Kavling extends Model
     {
         return $this->belongsTo('App\Project');
     }
+    public function status()
+    {
+        return $this->belongsTo('App\StatusOrder');
+    }
 }

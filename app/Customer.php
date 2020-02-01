@@ -18,7 +18,7 @@ class Customer extends Model
       'phone',
       'ktp_file',
       'income',
-      'program_is',
+      'program_id',
       'status',
       'description',
       'created_by',
@@ -27,4 +27,10 @@ class Customer extends Model
   protected $casts = [
     'status' => 'array',
 ];
+
+    public function program()
+    {
+        return $this->belongsTo('App\Program');
+    }
+
 }

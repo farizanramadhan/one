@@ -19,26 +19,24 @@
           @endif
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="pull-right">
-             <a class="btn btn-success" href="{{ route('order.create') }}"> Add New Order</a>
-          </div>
-        </div>
-      </div>
+
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header card-header-primary">
-              <h4 class="card-title ">List of Order</h4>
-              <p class="card-category">Select action for more information</p>
+            <div class="card-header card-header-primary row">
+                <div class="col-md-6"> <h4 class="card-title">List of Order</h4>
+                    <p class="card-category">Select action for more information</p></div>
+                <div class="col-md-6"><div class="pull-right ">
+                    <a class="btn btn-secondary" href="{{ route('order.create') }}"> Add New Order</a>
+                 </div>
+                </div>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table" id="myTable">
                   <thead class=" text-primary">
                     <th>KTP
-                        <th>Customer
+                    <th>Customer
                     <th>Project
                     <th>Kavling
                     <th>Status

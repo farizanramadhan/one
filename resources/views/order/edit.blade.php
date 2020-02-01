@@ -113,7 +113,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+{{--     <div class="row">
       <div class="col-md-12">
         <form action="{{ route('order.destroy',$order->id) }}" method="POST">
           @csrf
@@ -121,7 +121,7 @@
           <button type="submit" class="btn btn-danger btn-sm pull-right">Delete Order</button>
         </form>
       </div>
-    </div>
+    </div> --}}
   </div>
 </div>
 @endsection

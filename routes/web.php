@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('customer/getktp', 'CustomerController@getKtp')->name('customer.getKtp');
     Route::post('customer/getcity', 'CustomerController@getCity')->name('customer.getCity');
     Route::post('customer/getdistric', 'CustomerController@getDistric')->name('customer.getDistric');
+    Route::post('customer/history/store', 'CustomerController@historyStore')->name('customer.history.store');
     Route::post('order/history/store', 'OrderController@historyStore')->name('order.history.store');
 
 

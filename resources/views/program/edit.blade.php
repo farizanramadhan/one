@@ -30,11 +30,11 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Budget</label>
-                    <input type="text" name="budget" class="form-control"value="{{$program->budget}}" >
+                    <input type="text" name="budget" class="form-control"value="{{$program->budget}}" onfocusin="removemoney(this, event)" onfocusout="money(this, event)" >
                   </div>
                 </div>
               </div>
-              <a class="btn btn-warning btn-sm pull-left" href="{{url('program')}}">< Back</a> &nbsp;
+              <a class="btn btn-warning btn-sm pull-left" href="{{url('program')}}">Back</a> &nbsp;
               <button type="submit" class="btn btn-success btn-sm pull-right">Update Profile</button>
               <div class="clearfix"></div>
             </form>

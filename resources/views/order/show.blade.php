@@ -103,52 +103,42 @@
                         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Change Status</button>
                     @endif
                 </div>
-            </div>
+                </div>
             </div>
             <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div style="display:inline-block;width:100%;overflow-y:auto;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="display:inline-block;width:100%;overflow-y:auto;">
                             <ul class="timeline timeline-horizontal">
-
                                 @foreach ($order->orderHistory as $item)
-                               <li class="timeline-item">
-                                <div class="timeline-badge primary"><i class="material-icons">{{$item->icons}}</i></div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <h3 class="timeline-title">{{$item->name}}</h3>
-                                        <p><small class="text-muted" style="font-size: 100%;">
-                                            <i style=" vertical-align: middle;" class="material-icons">watch_later</i>
-                                            {{$item->created_at}}
-                                            </small>
-                                        </p>
-                                        <p><small class="text-muted" style="font-size: 100%;">
-                                            <i style=" vertical-align: middle;" class="material-icons">person</i>
-                                            {{$item->created_by}}
-                                            </small>
-                                        </p>
+                                <li class="timeline-item">
+                                    <div class="timeline-badge primary"><i class="material-icons">{{$item->icons}}</i>
                                     </div>
-                                    <div class="timeline-body">
-                                        <p>{{$item->notes}}</p>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h3 class="timeline-title">{{$item->name}}</h3>
+                                            <p><small class="text-muted" style="font-size: 80%;">
+                                                <i style="vertical-align: middle;font-size: 15px;"
+                                                class="material-icons">watch_later</i>
+                                                    {{$item->created_at}}
+                                                </small>
+                                         <br><small class="text-muted" style="font-size: 80%;">
+                                                    <i style="vertical-align: middle;font-size: 15px;"
+                                                        class="material-icons">person</i>
+                                                    {{$item->created_by}}
+                                                </small>
+                                            </p>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>{{$item->notes}}</p>
+                                        </div>
                                     </div>
-                                </div>
                                 </li>
-                               @endforeach
+                                @endforeach
                             </ul>
                         </div>
-                        </div>
                     </div>
-
-               {{--  <div class="row">
-                    <div class="col-md-12">
-                        <button title="Start" rel="tooltip" type="button" class="btn btn-primary btn-lg btn-round" style="padding:1.125rem;"><i class="material-icons">person</i></button>
-
-                        @foreach ($order->orderHistory as $item)
-                         ---->
-                        <button title="{{$item->name}}" rel="tooltip" type="button" class="btn btn-primary btn-lg btn-round" style="padding:1.125rem;"><i class="material-icons">person</i></button>
-                        @endforeach
-                    </div>
-                </div> --}}
+                </div>
             </div>
           </div>
 

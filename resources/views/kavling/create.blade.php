@@ -87,10 +87,10 @@
                   </div>
                 </div>
               </div>
+              <a class="btn btn-warning btn-sm pull-left" href="{{url('kavling')}}">Back</a> &nbsp;
               <button type="submit" class="btn btn-success btn-sm pull-right">Save</button>
               <div class="clearfix"></div>
             </form>
-
           </div>
         </div>
       </div>

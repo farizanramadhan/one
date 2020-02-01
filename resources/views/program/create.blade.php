@@ -37,10 +37,11 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Budget</label>
-                    <input type="text" class="form-control" name="budget" >
+                    <input type="text" class="form-control" name="budget" onfocusin="removemoney(this, event)" onfocusout="money(this, event)">
                   </div>
                 </div>
               </div>
+              <a class="btn btn-warning btn-sm pull-left" href="{{url('program')}}">Back</a> &nbsp;
               <button type="submit" class="btn btn-success btn-sm pull-right">Save</button>
               <div class="clearfix"></div>
             </form>

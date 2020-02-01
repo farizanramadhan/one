@@ -85,7 +85,7 @@
                   </div>
                 </div>
               </div>
-              <a class="btn btn-warning btn-sm pull-left" href="{{url('kavling')}}">< Back</a> &nbsp;
+              <a class="btn btn-warning btn-sm pull-left" href="{{url('kavling')}}">Back</a> &nbsp;
               <button type="submit" class="btn btn-success btn-sm pull-right">Update Profile</button>
               <div class="clearfix"></div>
             </form>
@@ -93,7 +93,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+{{--     <div class="row">
       <div class="col-md-12">
         <form action="{{ route('kavling.destroy',$kavling->id) }}" method="POST">
           @csrf
@@ -101,7 +101,7 @@
           <button type="submit" class="btn btn-danger btn-sm pull-right">Delete Kavling</button>
         </form>
       </div>
-    </div>
+    </div> --}}
   </div>
 </div>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Program;
+use App\Project;
 use Illuminate\Http\Request;
 use Auth;
 use Indonesia;
@@ -44,12 +45,13 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $status = collect([['project_id' => null,
-        'result' => 'Start',
+        $status = collect([['project' => null,
+        'result' => '-',
         'status' => 'Start',
         'created_at' => Carbon::now(),
         'created_by' =>  Auth::user()->email,
         ]]);
+
         $customer= Customer::create([
             'no_ktp' => $request->no_ktp,
             'no_npwp' => $request->no_npwp,
@@ -71,6 +73,22 @@ class CustomerController extends Controller
         return redirect()->route('customer.index')
                       ->with('success','Customer created successfully.');
     }
+    public function historyStore(Request $request)
+    {
+        $status = collect(['project' => $request->project,
+        'result' => $request->result,
+        'status' => $request->status,
+        'created_at' => Carbon::now(),
+        'created_by' =>  Auth::user()->email,
+        ]);
+        $customer = Customer::find($request->customer_id);
+        $temp = collect($customer->status);
+        $temp->push($status);
+        $customer->update(['status' => $temp]);
+
+        return redirect()->route('customer.show',$request->customer_id)
+                      ->with('success','Order created successfully.');
+    }
 
     /**
      * Display the specified resource.
@@ -80,8 +98,13 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
+        $projects = Project::all();
+        $province = Indonesia::findProvince($customer->province);
+        $city = Indonesia::findCity($customer->city);
+        $district = Indonesia::findDistrict($customer->distric);
+          $listStatus =  json_decode(json_encode($customer->status), FALSE);
 
-        return view('customer.show',compact('customer'));
+        return view('customer.show',compact('customer','province','city','district','projects','listStatus'));
     }
 
     /**
@@ -92,20 +115,13 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-      /*   $status = collect(['project_id' => 1,
-        'result' => 'Berminat',
-        'status' => 'Call In',
-        'created_at' => Carbon::now(),
-        'created_by' =>  Auth::user()->email,
-        ]);
-        $temp = collect($customer->status);
-        $temp->push($status);
-        $customer->status = $temp;
-        $customer->save();
- */
+
       /*   return $customer; */
+        $programs = Program::all();
         $provinsi = Indonesia::allProvinces();
-        return view('customer.edit',compact('customer','provinsi'));
+        $city = Indonesia::findCity($customer->city);
+        $district = Indonesia::findDistrict($customer->distric);
+        return view('customer.edit',compact('customer','provinsi','programs','city','district'));
     }
 
     /**
@@ -124,11 +140,13 @@ class CustomerController extends Controller
           'email' => 'required',
           'description' => 'required',
       ]);
+
       $customer->update($request->all());
 
       return redirect()->route('customer.index')
                       ->with('success','Customer updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -142,22 +160,6 @@ class CustomerController extends Controller
 
       return redirect()->route('customer.index')
                       ->with('success','Customer deleted successfully');
-    }
-
-    public function updateFU(Request $request)
-    {
-        $status = collect([['project_id' => $request->project_id,
-        'result' => $request->result,
-        'status' => $request->status,
-        'created_at' => Carbon::now(),
-        'created_by' =>  Auth::user()->email,
-        ]]);
-        $customer = Customer::find($request->customer_id);
-        $customer->status->push($status);
-        $customer->save();
-        return $customer;
-    /*   return redirect()->route('customer.index')
-                      ->with('success','Customer updated successfully.'); */
     }
 
     public function getKtp(Request $request)

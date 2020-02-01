@@ -3,7 +3,6 @@
 @section('page-title')
 Users Management
 @endsection
-
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -35,11 +34,11 @@ Users Management
                                         <td> {{$item->phone}}
                                         <td> {{$item->role == 1 ? "Admin" : ($item->role == 2 ? "Sales" : ($item->role == 3 ? "Marketing" : "Undefined")) }}
                                         <td>@if ($item->status)
-                                            <a class="btn btn-danger btn-sm" href="#" onclick="updateRole('{{$item->id}}',this)" data-toggle="tooltip" title="Disable"><i class="material-icons">lock</i></a>
+                                            <a class="btn btn-danger btn-sm btn-round" href="#" onclick="updateRole('{{$item->id}}',this)" data-toggle="tooltip" title="Disable"><i class="material-icons">lock</i></a>
                                         @else
-                                            <a class="btn btn-success btn-sm" href="#" onclick="updateRole('{{$item->id}}',this)"data-toggle="tooltip" title="Enable"><i class="material-icons">lock</i></a>
-                                        @endif 
-                                        <td> <a class="btn btn-warning btn-sm" href="{{route('user.edit',$item->id)}}"><i class="material-icons">search</i></a>              
+                                            <a class="btn btn-success btn-sm btn-round" href="#" onclick="updateRole('{{$item->id}}',this)"data-toggle="tooltip" title="Enable"><i class="material-icons">lock</i></a>
+                                        @endif
+                                        <td> <a class="btn btn-warning btn-sm btn-round" href="{{route('user.edit',$item->id)}}"><i class="material-icons">search</i></a>
                                     </tr>
                                     @endforeach
                                 </tbody>

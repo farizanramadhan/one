@@ -104,7 +104,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Penghasilan</label>
-                    <input type="text" class="form-control" name="income" >
+                    <input type="text" class="form-control" name="income" onfocusin="removemoney(this, event)" onfocusout="money(this, event)" >
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -128,6 +128,7 @@
                   </div>
                 </div>
               </div>
+              <a class="btn btn-warning btn-sm pull-left" href="{{url('customer')}}">Back</a> &nbsp;
               <button type="submit" class="btn btn-success btn-sm pull-right">Save</button>
               <div class="clearfix"></div>
             </form>

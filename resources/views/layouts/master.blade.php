@@ -42,7 +42,7 @@
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="orange" data-background-color="orange" data-image="{{asset('img/sidebar-4.jpg')}}">
+    <div class="sidebar" data-color="purple" data-background-color="purple" data-image="{{asset('img/sidebar-4.jpg')}}">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -63,25 +63,25 @@
           </li>
           <li class="nav-item {{ Request::is('customer*') ? 'active' : '' }}">
             <a class="nav-link" href="{{route('customer.index')}}">
-              <i class="material-icons">person</i>
+              <i class="material-icons">people</i>
               <p>Customers Management</p>
             </a>
           </li>
           <li class="nav-item {{ Request::is('order*') ? 'active' : '' }}">
             <a class="nav-link" href="{{route('order.index')}}">
-              <i class="material-icons">content_paste</i>
+              <i class="material-icons">post_add</i>
               <p>Order Management</p>
             </a>
           </li>
           <li class="nav-item {{ Request::is('project*') ? 'active' : '' }}">
             <a class="nav-link" href="{{route('project.index')}}">
-              <i class="material-icons">content_paste</i>
+              <i class="material-icons">map</i>
               <p>Projects Management</p>
             </a>
           </li>
           <li class="nav-item {{ Request::is('kavling*') ? 'active' : '' }}">
             <a class="nav-link" href="{{route('kavling.index')}}">
-              <i class="material-icons">content_paste</i>
+              <i class="material-icons">place</i>
               <p>Kavling Management</p>
             </a>
           </li>
@@ -93,7 +93,7 @@
           </li>
           <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
             <a class="nav-link" href="{{route('user.index')}}">
-              <i class="material-icons">content_paste</i>
+              <i class="material-icons">person</i>
               <p>Users Management</p>
             </a>
           </li>
@@ -150,21 +150,20 @@
               </li> -->
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{Auth::user()->email}}
                   <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">
-                    Account
-                  </p>
+                  <p class="d-lg-none d-md-block">Account       </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">
-                    <form id="logout-form" action="{{ url('logout') }}" method="POST">
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
-                <button type="submit">Logout</button>
-            </form>
-            </a>
+                    </form>
+
                 </div>
               </li>
             </ul>
@@ -240,7 +239,9 @@
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('js/material-dashboard.js?v=2.1.1')}}" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{asset('demo/demo.js')}}"></script>
+{{--   <script src="{{asset('demo/demo.js')}}"></script> --}}
+  <script src="{{asset('js/uang.js') }}"></script>
+  <script src="{{asset('js/accounting.js') }}"></script>
   <script>
     $(document).ready(function() {
 
