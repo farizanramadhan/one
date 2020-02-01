@@ -31,7 +31,7 @@
             </div>
             <div class="card-body">
 
-                <table class="table table-hover table-striped w-100" id="myTable">
+                <table class="table w-100" id="myTable">
                   <thead >
                     <th>Full Name
                     <th>Phone

@@ -33,13 +33,13 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table" id="myTable">
+                <table class="table  w-100" id="myTable">
                   <thead class=" text-primary">
                     <th>Project Name
                     <th>Address
                     <th>Availabilty
                     <th>Description
-                    <th width="20%">Action
+                    <th >Action
                   </thead>
                   <tbody>
                     @foreach($data as $item)

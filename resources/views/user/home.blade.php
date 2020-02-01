@@ -15,7 +15,7 @@ Users Management
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table id="myTable"class="table w-100">
                                 <thead class=" text-primary">
                                     <th> No
                                     <th> Name
@@ -23,7 +23,7 @@ Users Management
                                     <th> Phone
                                     <th> Role
                                         <th> Status
-                                    <th width="20%"> Action
+                                    <th > Action
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $item)
@@ -53,6 +53,11 @@ Users Management
 @endsection
 @push('script')
 <script>
+    $(document).ready( function () {
+      $('#myTable').DataTable({
+          responsive: true
+        });
+    } );
 function updateRole(id,row) {
       $.ajax({
           type: "GET",
