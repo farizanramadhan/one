@@ -92,17 +92,18 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-/*         $status = collect(['project_id' => 1,
+      /*   $status = collect(['project_id' => 1,
         'result' => 'Berminat',
         'status' => 'Call In',
         'created_at' => Carbon::now(),
         'created_by' =>  Auth::user()->email,
         ]);
-        return $customer->status;
-        $customer->status->push($status);
+        $temp = collect($customer->status);
+        $temp->push($status);
+        $customer->status = $temp;
         $customer->save();
-
-        return $customer; */
+ */
+      /*   return $customer; */
         $provinsi = Indonesia::allProvinces();
         return view('customer.edit',compact('customer','provinsi'));
     }
