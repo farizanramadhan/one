@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Kavling;
 use Illuminate\Http\Request;
 use Auth;
 class ProjectController extends Controller
@@ -101,5 +102,25 @@ class ProjectController extends Controller
         $project->delete();
         return redirect()->route('project.index')
                         ->with('success','Data deleted successfully');
+    }
+    public function getKavling(Request $request)
+    {
+        if ($request->has('q')) {
+            if ($request->q) {
+            $cari = $request->q;
+            $hasil = Kavling::where('project_id',$cari)->whereIn('status_id',array(4,5,6,7,14,10,11))->get();
+            $data = $hasil;
+            if($data->count())return response()->json($data,200);
+            else{
+                $data = collect([['id' => 0,
+                'name' => 'Tidak Ada Kavling Tersedia',
+                ]]);
+                return response()->json($data,200);
+            }
+            }
+            return response()->json(null,200);
+        }
+        return response()->json(null,200);
+
     }
 }

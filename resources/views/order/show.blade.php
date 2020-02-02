@@ -11,6 +11,18 @@
 <div class="content">
   <div class="container-fluid">
     <div class="row">
+        <div class="col-md-12">
+          @if ($message = Session::get('success'))
+              <div class="alert alert-success alert-dismissible fade show">
+                  <p>{{ $message }}</p>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          @endif
+        </div>
+      </div>
+    <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">

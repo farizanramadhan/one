@@ -49,7 +49,7 @@
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
-        <a href="{{url('/')}}" class="simple-text logo-normal">
+        <a href="{{url('/dashboard')}}" class="simple-text logo-normal">
           SUWARNAYASA
         </a>
       </div>
@@ -73,30 +73,37 @@
               <p>Order Management</p>
             </a>
           </li>
-          <li class="nav-item {{ Request::is('project*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{route('project.index')}}">
-              <i class="material-icons">map</i>
-              <p>Projects Management</p>
-            </a>
-          </li>
-          <li class="nav-item {{ Request::is('kavling*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{route('kavling.index')}}">
-              <i class="material-icons">place</i>
-              <p>Kavling Management</p>
-            </a>
-          </li>
-          <li class="nav-item {{ Request::is('program*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{route('program.index')}}">
-              <i class="material-icons">content_paste</i>
-              <p>Sumber Informasi</p>
-            </a>
-          </li>
-          <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{route('user.index')}}">
-              <i class="material-icons">person</i>
-              <p>Users Management</p>
-            </a>
-          </li>
+            @if (Auth::user()->role != 2)
+            <li class="nav-item {{ Request::is('project*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('project.index')}}">
+                <i class="material-icons">map</i>
+                <p>Projects Management</p>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('kavling*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('kavling.index')}}">
+                <i class="material-icons">place</i>
+                <p>Kavling Management</p>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('program*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('program.index')}}">
+                <i class="material-icons">content_paste</i>
+                <p>Sumber Informasi</p>
+                </a>
+            </li>
+            @if (Auth::user()->role != 3)
+            <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('user.index')}}">
+                <i class="material-icons">person</i>
+                <p>Users Management</p>
+                </a>
+            </li>
+            @endif
+            @endif
+
+
+
         </ul>
       </div>
     </div>
@@ -157,7 +164,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="#">Profile</a>
                   <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="logout()">
                     Logout
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -187,7 +194,7 @@
           </nav>
           <div class="copyright float-right">
             &copy;
-            2019, by Farizan Ramadhan && <a href="https://quem-studio.com">Faqih Salban </a>
+            {{\Carbon\Carbon::now()->year}} Suwarnayasa, Suported By <a href="https://quem-studio.com">Quem Studio x Itik.tech</a>
           </div>
         </div>
       </footer>
@@ -209,9 +216,9 @@
   <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
   <script src="{{asset('js/plugins/jquery.bootstrap-wizard.js')}}"></script>
   <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-{{--   <script src="{{asset('js/plugins/bootstrap-selectpicker.js')}}"></script> --}}
+       <script src="{{asset('js/plugins/bootstrap-selectpicker.js')}}"></script>
  <!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
   <script src="{{asset('js/plugins/bootstrap-datetimepicker.min.js')}}"></script>
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
@@ -243,6 +250,25 @@
   <script src="{{asset('js/uang.js') }}"></script>
   <script src="{{asset('js/accounting.js') }}"></script>
   <script>
+    function logout() {
+    event.preventDefault();
+    Swal.fire(
+    {
+        title: "Logout?",
+        text: "Are you sure want to logout?",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonText: "Logout",
+        reverseButtons: true
+    }).then(function(result)
+    {
+        if(result.value){
+            document.getElementById('logout-form').submit();
+        }else{
+
+        }
+    });
+  }
     $(document).ready(function() {
 
 

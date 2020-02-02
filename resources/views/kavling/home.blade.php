@@ -27,7 +27,7 @@
                 <div class="col-md-6"> <h4 class="card-title">List of Kavling</h4>
                     <p class="card-category">Select action for more information</p></div>
                 <div class="col-md-6"><div class="pull-right ">
-                    <a class="btn btn-secondary" href="{{ route('kavling.create') }}"> Add New Kavling</a>
+                    <a class="btn btn-primary" href="{{ route('kavling.create') }}"> Add New Kavling</a>
                  </div>
                 </div>
             </div>

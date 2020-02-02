@@ -12897,7 +12897,15 @@ label {
 .bmd-form-group.is-focused .form-control.form-control-danger {
   background-size: 100% 100%, 100% 100%, 0.9375rem 0.9375rem;
 }
+form .form-group label.select {
+    position: absolute;
+    top: -12px;
+}
 
+form .form-group select.form-control {
+     position:absolute;
+     top:-5px;
+}
 select,
 select.form-control {
   -moz-appearance: none;

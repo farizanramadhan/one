@@ -105,7 +105,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="bmd-label-floating">Sumber Informasi</label>
+                    <label class="select">Sumber Informasi</label>
                     <select name="program_id" id="program_id" class="form-control">
                         @foreach ($programs as $item)
                         @if ($item->id == $customer->program_id)
@@ -149,9 +149,9 @@
     $('.select2').select2({
         placeholder: 'Cari Provinsi...',
     });
-    $('#program_id').select2({
+/*     $('#program_id').select2({
         placeholder: 'Cari Sumber',
-    });
+    }); */
     //untuk autocomplete no ktp, asu gagal terus
     var path = "{{ route('customer.getKtp') }}";
     $('#no_ktp .typeahead').typeahead(null,{
@@ -176,7 +176,7 @@
             url: "{{route('customer.getCity')}}",
             data: "q=" + this.value,
             success: function (mag) {
-                $('#city').empty().trigger("change");
+                $('#city').empty();
                 $("#city").select2({
                     data: $.map(mag, function (item) {
                         return {
@@ -184,7 +184,8 @@
                             id: item.id
                         }
                     })
-                })
+                });
+                $('#city').trigger("change");
 
             },
             error: function (err) {
@@ -204,7 +205,7 @@
             url: "{{route('customer.getDistric')}}",
             data: "q=" + this.value,
             success: function (mag) {
-                $('#distric').empty().trigger("change");
+                $('#distric').empty();
                 $("#distric").select2({
                     data: $.map(mag, function (item) {
                         return {

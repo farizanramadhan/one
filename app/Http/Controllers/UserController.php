@@ -71,15 +71,15 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'role' => 'required',
-            'status' => 'required',
             'phone' => 'required',
+            'role' => 'required',
         ]);
         $user->update($request->all());
-  
+
         return redirect()->route('user.index')
                         ->with('success','Customer updated successfully.');
     }
@@ -101,7 +101,7 @@ class UserController extends Controller
            $user->update(array('role' => 0));
         }else{
            $user->update(array('role' => 1));
-        } 
+        }
         return $user;
     }
 }

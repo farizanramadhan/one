@@ -25,7 +25,7 @@
                 <div class="col-md-6"> <h4 class="card-title">List of Programs</h4>
                     <p class="card-category">Select action for more information</p></div>
                 <div class="col-md-6"><div class="pull-right ">
-                    <a class="btn btn-secondary" href="{{ route('program.create') }}"> Add New Program</a>
+                    <a class="btn btn-primary" href="{{ route('program.create') }}"> Add New Program</a>
                  </div>
                 </div>
             </div>

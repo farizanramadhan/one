@@ -14,14 +14,7 @@
 Route::get('dashboard', function () {
     return view('dashboard');
 });
-
-
-Route::get('home', function () {
-    return view('dashboard');
-
-});
-
-
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('user/updaterole/{id}','UserController@updateRole')->name('user.updaterole');
@@ -30,7 +23,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('customer/getdistric', 'CustomerController@getDistric')->name('customer.getDistric');
     Route::post('customer/history/store', 'CustomerController@historyStore')->name('customer.history.store');
     Route::post('order/history/store', 'OrderController@historyStore')->name('order.history.store');
-
+    Route::post('project/getkavling', 'ProjectController@getKavling')->name('project.getKavling');
 
     Route::resource('customer','CustomerController');
     Route::resource('user','UserController');
@@ -41,8 +34,4 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('status','StatusController');
 
 });
-
 Auth::routes();
-
- Route::get('/', 'HomeController@index')->name('home');
-/* Route::get('/', 'HomeController@index')->name('home'); */

@@ -17,52 +17,40 @@
               @csrf
               <input  type="hidden" class="form-control" value="{{Auth::user()->email}}" name="updated_by">
               @method('PUT')
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
+                <div class="form-row">
+                  <div class="form-group col-md-6 col-sm-12">
                     <label class="bmd-label-floating">Name</label>
                     <input type="text" class="form-control" value="{{$user->name}}" name="name">
                   </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label class="bmd-label-floating">Email</label>
+                      <input type="email" name="email"  class="form-control" value="{{$user->email}}">
+                    </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Email</label>
-                    <input type="email" name="email"  class="form-control" value="{{$user->email}}">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
+              <div class="form-row">
+                  <div class="form-group col-md-6 col-sm-12">
                     <label class="bmd-label-floating">Phone</label>
                     <input type="text" name="phone"  class="form-control" value="{{$user->phone}}">
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Role</label>
+                  <div class="form-group col-md-6 col-sm-12">
+                    <label for="role" class="select">Role</label>
                     <select name="role" id="role" class="form-control">
-                      <option value="1">Admin</option>
-                      <option value="2">Sales</option>
-                      <option value="3">Marketing</option>
+                        @if ($user->role == 1 )
+                        <option selected value="1">Admin</option>
+                        <option value="2">Sales</option>
+                        <option value="3">Marketing</option>
+                        @elseif($user->role == 2)
+                        <option value="1">Admin</option>
+                        <option selected value="2">Sales</option>
+                        <option value="3">Marketing</option>
+                        @else
+                        <option value="1">Admin</option>
+                        <option value="2">Sales</option>
+                        <option selected value="3">Marketing</option>
+                        @endif
                     </select>
                   </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Status</label>
-                    <select name="status" id="status" class="form-control">
-                      <option value="1">Enable</option>
-                      <option value="0">Disable</option>
-                    </select>
-                  </div>
-                </div>
               </div>
-  
               <a class="btn btn-warning btn-sm pull-left" href="{{url('user')}}">< Back</a> &nbsp;
               <button type="submit" class="btn btn-success btn-sm pull-right">Update Profile</button>
               <div class="clearfix"></div>

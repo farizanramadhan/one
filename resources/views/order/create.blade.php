@@ -44,7 +44,8 @@
                 <div class="col-md-12 col-lg-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Project</label>
-                    <select name="project_id" class="form-control select2" >
+                    <select id="project_id" name="project_id" class="form-control select2" >
+                        <option value="">Please Select Project </option>
                         @foreach ($project as $item)
                          <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
@@ -54,10 +55,8 @@
                 <div class="col-md-12 col-lg-6">
                     <div class="form-group">
                       <label class="bmd-label-floating">Kavling</label>
-                      <select name="kavling_id" class="form-control select2" >
-                          @foreach ($kavling as $item)
-                           <option value="{{$item->id}}">{{$item->name}}</option>
-                          @endforeach
+                      <select id="kavling_id" name="kavling_id" class="form-control select2" >
+                        <option value="">Please Select Project First</option>
                       </select>
                     </div>
                   </div>
@@ -138,6 +137,34 @@
      $(document).ready(function () {
       $('.select2').select2({
         });
+        $("#project_id").change(function () {
+        console.log(this.value);
+        $.ajax({
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{route('project.getKavling')}}",
+            data: "q=" + this.value,
+            success: function (mag) {
+
+                $('#kavling_id').empty().trigger("change");
+                $("#kavling_id").select2({
+                    data: $.map(mag, function (item) {
+                        return {
+                            text: item.name ,
+                            id: item.id
+                        }
+                    })
+                })
+
+            },
+            error: function (err) {
+                console.log(err);
+            },
+        });
     });
+    });
+
     </script>
 @endpush

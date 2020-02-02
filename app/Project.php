@@ -15,5 +15,8 @@ class Project extends Model
         'created_by',
         'updated_by',
     ];
-
+    public function kavling()
+    {
+        return $this->hasMany('App\Kavling');
+    }
 }
