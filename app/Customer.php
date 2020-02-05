@@ -32,5 +32,9 @@ class Customer extends Model
     {
         return $this->belongsTo('App\Program');
     }
+    public function distrik()
+    {
+        return $this->belongsTo('Laravolt\Indonesia\Models\Kecamatan','distric');
+    }
 
 }

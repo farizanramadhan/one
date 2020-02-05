@@ -27,7 +27,7 @@
                 <div class="col-md-6"> <h4 class="card-title">List of Kavling</h4>
                     <p class="card-category">Select action for more information</p></div>
                 <div class="col-md-6"><div class="pull-right ">
-                    <a class="btn btn-primary" href="{{ route('kavling.create') }}"> Add New Kavling</a>
+                    <a class="btn btn-warning" href="{{ route('kavling.create') }}"> Add New Kavling</a>
                  </div>
                 </div>
             </div>
@@ -38,6 +38,7 @@
                     <th>Kavling Name
                     <th>Type
                     <th>Project
+                        <th>Address
                         <th>Status
                     <th >Action
                   </thead>
@@ -47,6 +48,8 @@
                         <td>{{$item->name}}</td>
                         <td>{{$item->type}}</td>
                         <td>{{$item->project->name}}</td>
+                        <td>{{$item->address}}</td>
+
                         <td>{{$item->status->name}}</td>
                         <td><a class="btn btn-warning btn-sm btn-round" href="{{ route('kavling.edit',$item ?? ''->id) }}"><i class="material-icons">edit</i></a></td>
                       </tr>
@@ -64,9 +67,9 @@
 @push('script')
 <script type="text/javascript">
     $(document).ready( function () {
-      $('#myTable').DataTable({
+     /*  $('#myTable').DataTable({
           responsive: true
-        });
+        }); */
     } );
   </script>
 @endpush

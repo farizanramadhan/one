@@ -65,7 +65,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="bmd-label-floating">Price</label>
-                        <input type="text" class="form-control" name="price" >
+                        <input type="text" class="form-control" name="price" onfocusin="removemoney(this, event)" onfocusout="money(this, event)">
                       </div>
                     </div>
                   </div>

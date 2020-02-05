@@ -26,33 +26,35 @@
                 <div class="col-md-6"> <h4 class="card-title">List of Customers</h4>
                     <p class="card-category">Select action for more information</p></div>
                 <div class="col-md-6"><div class="pull-right ">
-                    <a class="btn btn-primary" href="{{ route('customer.create') }}"> Add New Customer</a>
+                    <a class="btn btn-warning" href="{{ route('customer.create') }}"> Add New Customer</a>
                  </div></div>
             </div>
             <div class="card-body">
-
-                <table class="table w-100" id="myTable">
-                  <thead >
-                    <th>Full Name
-                    <th>Phone
-                    <th>Email
-                    <th>Address
-                    <th>Action
-                    </thead>
-                  <tbody>
-                    @foreach($customers as $customer)
-                      <tr>
-                        <td>{{$customer->full_name}}</td>
-                        <td>{{$customer->phone}}</td>
-                        <td>{{$customer->email}}</td>
-                        <td>{{$customer->address}}</td>
-                        <td>
-                        <a class="btn btn-info btn-sm btn-round" href="{{ route('customer.show',$customer ?? ''->id) }}" title="Show"><i class="material-icons">search</i></a>
-                        <a class="btn btn-warning btn-sm btn-round" href="{{ route('customer.edit',$customer->id) }}"><i class="material-icons">edit</i></a></td>
-                      </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                    <thead >
+                        <th>Full Name
+                        <th>Phone
+                        <th>Email
+                        <th>Address
+                        <th>Action
+                        </thead>
+                    <tbody>
+                        @foreach($customers as $customer)
+                        <tr>
+                            <td>{{$customer->full_name}}</td>
+                            <td>{{$customer->phone}}</td>
+                            <td>{{$customer->email}}</td>
+                            <td>{{$customer->distrik->name}}</td>
+                            <td>
+                            <a class="btn btn-info btn-sm btn-round" href="{{ route('customer.show',$customer ?? ''->id) }}" title="Show"><i class="material-icons">search</i></a>
+                            <a class="btn btn-warning btn-sm btn-round" href="{{ route('customer.edit',$customer->id) }}"><i class="material-icons">edit</i></a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    </table>
+                </div>
+               <div style="float: right;">{!! $customers->render() !!}</div>
             </div>
           </div>
         </div>
@@ -64,9 +66,9 @@
 
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#myTable').DataTable({
+  /*   $('#myTable').DataTable({
         responsive: true
-      });
+      }); */
   } );
 </script>
 @endpush

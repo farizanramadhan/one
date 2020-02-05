@@ -38,12 +38,13 @@ class KavlingController extends Controller
      */
     public function store(Request $request)
     {
+         $price = str_replace('.', '', $request->price);
         $data= Kavling::create([
             'name' => $request->name,
             'address' =>  $request->address,
             'type' => $request->type,
             'location' => $request->location,
-            'price' => $request->price,
+            'price' => $price,
             'description' =>  $request->description,
             'project_id' =>  $request->project_id,
             'created_by' =>  Auth::user()->email,
@@ -84,13 +85,22 @@ class KavlingController extends Controller
      */
     public function update(Request $request, Kavling $kavling)
     {
+         $price = str_replace('.', '', $request->price);
         $request->validate([
             'name' => 'required',
             'address' => 'required',
             'type' => 'required',
             'project_id' => 'required',
         ]);
-        $kavling->update($request->all());
+        $kavling->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'type' => $request->type,
+            'project_id' => $request->project_id,
+            'price' => $price,
+           /*  'location' => $request->location, */
+            'description' => $request->description,
+        ]);
 
         return redirect()->route('kavling.index')
                         ->with('success','Data updated successfully.');

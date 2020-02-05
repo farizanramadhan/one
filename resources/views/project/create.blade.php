@@ -37,7 +37,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Availability</label>
-                    <input type="text" class="form-control" name="availability" >
+                    <input type="number" class="form-control" name="availability" >
                   </div>
                 </div>
               </div>

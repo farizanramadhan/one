@@ -15,14 +15,14 @@ Users Management
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="myTable"class="table w-100">
+                            <table class="table">
                                 <thead class=" text-primary">
                                     <th> No
                                     <th> Name
                                     <th> Email
                                     <th> Phone
                                     <th> Role
-                                        <th> Status
+                                    <th> Status
                                     <th > Action
                                 </thead>
                                 <tbody>

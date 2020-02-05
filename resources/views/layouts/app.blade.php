@@ -17,9 +17,9 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('demo/demo.css')}}" rel="stylesheet" />
 </head>
-<body style="background-image: url('img/login-bg.jpg'); background-repeat: no-repeat;
+<body {{-- style="background-image: url('img/login-bg.jpg'); background-repeat: no-repeat;
 background-attachment: fixed;
-background-size: cover;">
+background-size: cover;" --}}>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

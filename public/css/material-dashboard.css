@@ -12902,10 +12902,10 @@ form .form-group label.select {
     top: -12px;
 }
 
-form .form-group select.form-control {
+/* form .form-group select.form-control {
      position:absolute;
      top:-5px;
-}
+} */
 select,
 select.form-control {
   -moz-appearance: none;

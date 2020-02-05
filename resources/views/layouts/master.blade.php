@@ -36,7 +36,7 @@
   <link href="{{asset('css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
 {{--   <link href="{{asset('demo/demo.css')}}" rel="stylesheet" /> --}}
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+ {{--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/> --}}
   @stack('style')
 </head>
 
@@ -50,7 +50,8 @@
     -->
       <div class="logo">
         <a href="{{url('/dashboard')}}" class="simple-text logo-normal">
-          SUWARNAYASA
+          {{-- SUWARNAYASA --}}
+          <img src="{{asset('img/logo.png')}}" width="40%%" alt="SUWARNAYASA">
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -121,7 +122,7 @@
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <!-- <form class="navbar-form">
+             <form class="navbar-form">
               <div class="input-group no-border">
                 <input type="text" value="" class="form-control" placeholder="Search...">
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -129,7 +130,7 @@
                   <div class="ripple-container"></div>
                 </button>
               </div>
-            </form> -->
+            </form>
             <ul class="navbar-nav">
               <!-- <li class="nav-item">
                 <a class="nav-link" href="#pablo">
@@ -216,7 +217,7 @@
   <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
   <script src="{{asset('js/plugins/jquery.bootstrap-wizard.js')}}"></script>
   <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-       <script src="{{asset('js/plugins/bootstrap-selectpicker.js')}}"></script>
+    {{--    <script src="{{asset('js/plugins/bootstrap-selectpicker.js')}}"></script> --}}
  <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->

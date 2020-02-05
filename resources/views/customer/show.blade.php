@@ -18,10 +18,10 @@
                     <h4 class="card-title">Show Customer Information</h4>
                     <p class="card-category">Don't forget to check all mandatory data</p>
                 </div>
-                <div class="col-md-6"><div class="pull-right">
+              {{--   <div class="col-md-6"><div class="pull-right">
                         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Change Status</button>
                 </div>
-                </div>
+                </div>--}}
             </div>
           <div class="card-body">
               <div class="row">
@@ -121,7 +121,7 @@
                     <p class="card-category">Don't forget to check all mandatory data</p>
                 </div>
                 <div class="col-md-6"><div class="pull-right">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Change Status</button>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Change Status</button>
                 </div>
                 </div>
             </div>
@@ -183,26 +183,46 @@ aria-hidden="true">
            <input type="text" name="customer_id" class="form-control" value="{{$customer->id}}" hidden>
            @csrf
             <div class="modal-body">
-                <div class="form-group">
-                    <label class="bmd-label-floating">Project</label>
-                    <select name="project" class="form-control ">
-                        @foreach ($projects as $item)
-                            <option value="{{$item->name}}">{{$item->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="bmd-label-floating">Status</label>
-                    <select name="status" class="form-control ">
-                            <option value="Call In">Call In</option>
-                            <option value="Visiting">Visiting</option>
-                            <option value="Site Visit">Site Visit</option>
-                    </select>
-                </div>
-                <div class="form-group ">
-                    <label class="form-label right">Result</label>
-                    <input type="text" name="result" class="form-control">
-                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="select bmd-label-floating">Project</label>
+                            <select name="project" class="form-control ">
+                                @foreach ($projects as $item)
+                                    <option value="{{$item->name}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="select bmd-label-floating">Status</label>
+                            <select name="status" class="form-control " >
+                                    <option value="Call In">Call In</option>
+                                    <option value="Visiting">Visiting</option>
+                                    <option value="Site Visit">Site Visit</option>
+                            </select>
+                        </div>
+                    </div><br><br><br>
+                    <div class="col-md-12">
+                        <div class="form-group ">
+                            <label class="bmd-label-floating">Result</label>
+                            <input type="text" name="result" class="form-control">
+                        </div>
+                    </div>
+                  </div>
+                {{--   <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group ">
+                            <label class="bmd-label-floating">Result</label>
+                            <input type="text" name="result" class="form-control">
+                        </div>
+                    </div>
+                </div> --}}
+
+
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

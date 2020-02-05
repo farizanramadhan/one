@@ -19,9 +19,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-
-      $customers = Customer::all();
-
+      $customers = Customer::with('distrik')->paginate('20');
+      /* $customers = Customer::all();
+ */
       return view('customer.home',compact('customers'));
     }
 

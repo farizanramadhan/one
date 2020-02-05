@@ -36,9 +36,10 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
+        $budget = str_replace('.', '', $request->budget);
         $data= Program::create([
             'name' => $request->name,
-            'budget' =>  $request->budget,
+            'budget' =>  $budget,
             'created_by' =>  Auth::user()->email,
         ]);
         return redirect()->route('program.index')
@@ -76,11 +77,12 @@ class ProgramController extends Controller
      */
     public function update(Request $request, Program $program)
     {
+        $budget = str_replace('.', '', $request->budget);
         $request->validate([
             'name' => 'required',
             'budget' => 'required',
         ]);
-        $program->update($request->all());
+        $program->update(['name' => $request->name, 'budget' => $budget]);
 
         return redirect()->route('program.index')
                         ->with('success','Data updated successfully.');
