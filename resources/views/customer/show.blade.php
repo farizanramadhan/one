@@ -179,7 +179,7 @@ aria-hidden="true">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             </button>
         </div>
-        <form method="post" action="{{route('order.history.store')}}">
+        <form method="post" action="{{route('customer.history.store')}}">
            <input type="text" name="customer_id" class="form-control" value="{{$customer->id}}" hidden>
            @csrf
             <div class="modal-body">
