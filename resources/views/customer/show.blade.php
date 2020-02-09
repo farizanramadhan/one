@@ -139,7 +139,7 @@
                                             <h3 class="timeline-title">{{$item->status}}</h3>
                                             <p><small class="text-muted" style="font-size: 80%;">
                                                 <i style="vertical-align: middle;font-size: 15px;"
-                                                    class="material-icons">map</i> @isset($$item->project)
+                                                    class="material-icons">map</i> @isset($item->project)
                                                     {{$item->project}}
                                                     @endisset
                                             </small> <br>
