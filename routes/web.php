@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('dashboard', function () {
-    return view('dashboard');
-});
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('dashboard', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('user/updaterole/{id}','UserController@updateRole')->name('user.updaterole');
