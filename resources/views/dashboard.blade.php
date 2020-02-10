@@ -123,29 +123,29 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script>
         var comexOT = <?php echo $dataGraph ?> ;
+        console.log(comexOT);
         var ctx = document.getElementById("dailySalesChart");
         var myChart = new Chart(ctx, {
           type: 'line',
           data: {
-            //labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
+           // labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
             datasets: [{
               label: 'Customer',
               data: comexOT,
               backgroundColor: [
-                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 0.2)',
               ],
               borderColor: [
                 'rgba(255,255,255,1)',
               ],
-              borderWidth: 3
+              borderWidth: 3,
+              lineTension:1,
+              
             },
             ]
           },
           options: {
             scales: {
-              /*   scaleLabel: {
-                    fontColor : '#FFFF'
-                }, */
               yAxes: [{
                 ticks: {
                   beginAtZero: false,
@@ -161,15 +161,14 @@
                    source:'data',
                    fontColor: "white",
                    },
-                      type: 'time',
-                      time: {
-                        displayFormats: {
-                          month: 'MMM'
-                        },
-                        unit: 'month',
-                        round: 'month',
-                      },
-                      distribution: 'series'
+                   type: 'category',
+                   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep','Oct','Nov','Des'],
+                   /* type: 'time',
+                   time: {
+                     unit: 'month',
+                     round: 'month',
+                   }, */
+                   distribution: 'series'
                   }]
             },
             legend: {
@@ -199,12 +198,14 @@
               label: 'Order',
               data: order,
               backgroundColor: [
-                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 0)',
               ],
               borderColor: [
                 'rgba(255,255,255,1)',
               ],
-              borderWidth: 3
+              borderWidth: 3,
+              lineTension:0.7,
+              borderDash:[1],
             },
             ]
           },
@@ -228,14 +229,8 @@
                    source:'data',
                    fontColor: "white",
                    },
-                      type: 'time',
-                      time: {
-                        displayFormats: {
-                          month: 'MMM'
-                        },
-                        unit: 'month',
-                        round: 'month',
-                      },
+                   type: 'category',
+                   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep','Oct','Nov','Des'],
                       distribution: 'series'
                   }]
             },

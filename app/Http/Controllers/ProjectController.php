@@ -15,7 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $data = Project::all();
+        $data = Project::with('kavling')->get();
+
         return view('project.home',compact('data'));
     }
 
@@ -102,6 +103,9 @@ class ProjectController extends Controller
         $project->delete();
         return redirect()->route('project.index')
                         ->with('success','Data deleted successfully');
+    }
+    public function countKavling(){
+
     }
     public function getKavling(Request $request)
     {

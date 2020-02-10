@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\Customer;
 use DB;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $dataGraph = Customer::select(DB::raw("count('id') as y,MONTH(created_at) as x"))->orderBy('x')->groupBy(DB::raw('MONTH(created_at)'))->get();
+        $dataGraph = Customer::select(DB::raw("MONTH(created_at) as x,count('id') as y"))->whereYear('created_at', '=', Carbon::now()->year)->orderBy('x')->groupBy(DB::raw('MONTH(created_at)'))->get();
         $dataOrder = Order::select(DB::raw("count('id') as y,MONTH(created_at) as x"))->orderBy('x')->groupBy(DB::raw('MONTH(created_at)'))->get();
         $graphJml            = $dataGraph->pluck('jml');
         $graphLbl           = $dataGraph->pluck('bulan');

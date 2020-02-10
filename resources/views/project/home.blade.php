@@ -37,16 +37,16 @@
                   <thead class=" text-primary">
                     <th>Project Name
                     <th>Address
-                    <th>Availabilty
+                    <th>Availability
                     <th>Description
-                    <th >Action
+                    <th>Action
                   </thead>
                   <tbody>
                     @foreach($data as $item)
                       <tr>
                         <td>{{$item->name}}</td>
                         <td>{{$item->address}}</td>
-                        <td>{{$item->availability}}</td>
+                        <td>{{$item->kavling->where('status_id',14)->count(). '/' .$item->kavling->count()}}</td>
                         <td>{{$item->description}}</td>
                         <td><a class="btn btn-warning btn-sm btn-round" href="{{ route('project.edit',$item ?? ''->id) }}"><i class="material-icons">edit</i></a></td>
                       </tr>

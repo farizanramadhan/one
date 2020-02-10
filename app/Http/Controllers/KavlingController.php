@@ -38,7 +38,7 @@ class KavlingController extends Controller
      */
     public function store(Request $request)
     {
-         $price = str_replace('.', '', $request->price);
+        $price = str_replace('.', '', $request->price);
         $data= Kavling::create([
             'name' => $request->name,
             'address' =>  $request->address,
@@ -47,6 +47,7 @@ class KavlingController extends Controller
             'price' => $price,
             'description' =>  $request->description,
             'project_id' =>  $request->project_id,
+            'status_id' =>  14,
             'created_by' =>  Auth::user()->email,
         ]);
         return redirect()->route('kavling.index')
@@ -98,7 +99,7 @@ class KavlingController extends Controller
             'type' => $request->type,
             'project_id' => $request->project_id,
             'price' => $price,
-           /*  'location' => $request->location, */
+
             'description' => $request->description,
         ]);
 
