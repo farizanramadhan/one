@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', function(){
+    // url has been moved
+    return redirect('/dashboard');
+});
 Route::get('dashboard', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {

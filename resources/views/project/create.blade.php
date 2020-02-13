@@ -59,7 +59,7 @@
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn btn-success btn-sm pull-right">Save</button>
+              <button type="submit" class="btn btn-info btn-sm pull-right">Save</button>
               <div class="clearfix"></div>
             </form>
 

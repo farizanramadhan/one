@@ -26,18 +26,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $dataGraph = Customer::select(DB::raw("MONTH(created_at) as x,count('id') as y"))->whereYear('created_at', '=', Carbon::now()->year)->orderBy('x')->groupBy(DB::raw('MONTH(created_at)'))->get();
-        $dataOrder = Order::select(DB::raw("count('id') as y,MONTH(created_at) as x"))->orderBy('x')->groupBy(DB::raw('MONTH(created_at)'))->get();
-        $graphJml            = $dataGraph->pluck('jml');
-        $graphLbl           = $dataGraph->pluck('bulan');
-       /*  $comexOutstanding       = M_eis::select('tgl_data as x',DB::raw('SUM(comex_outstandingkredit) as y'))->where("tgl_data",">", Carbon::now()->subMonths(5))->groupBy('tgl_data')->orderBy('tgl_data')->get(); */
-
+        $Customer = Customer::select(DB::raw("MONTH(created_at) as x,count('id') as y"))->whereYear('created_at', '=', Carbon::now()->year)->orderBy('x')->groupBy(DB::raw('MONTH(created_at)'))->get();
+        $Order =       Order::select(DB::raw("MONTH(created_at) as x,count('id') as y"))->whereYear('created_at', '=', Carbon::now()->year)->orderBy('x')->groupBy(DB::raw('MONTH(created_at)'))->get();
+        $dataOrder = array(['x'=>1,'y'=>0],['x'=>2,'y'=>0],['x'=>3,'y'=>0],['x'=>4,'y'=>0],['x'=>5,'y'=>0],['x'=>6,'y'=>0],['x'=>7,'y'=>0],['x'=>8,'y'=>0],['x'=>9,'y'=>0],['x'=>10,'y'=>0],['x'=>11,'y'=>0],['x'=>12,'y'=>0]);
+        $dataCustomer = array(['x'=>1,'y'=>0],['x'=>2,'y'=>0],['x'=>3,'y'=>0],['x'=>4,'y'=>0],['x'=>5,'y'=>0],['x'=>6,'y'=>0],['x'=>7,'y'=>0],['x'=>8,'y'=>0],['x'=>9,'y'=>0],['x'=>10,'y'=>0],['x'=>11,'y'=>0],['x'=>12,'y'=>0]);
+        foreach ($Order as $key) {
+            $dataOrder[$key->x-1] = $key;
+        }
+        foreach ($Customer as $key) {
+            $dataCustomer[$key->x-1] = $key;
+        }
+        $top10Kecamatan = Customer::with('distrik')->select('distric',DB::raw('count(distric) as total'))->orderBy('total','DESC')->groupBy('distric')->limit(10)->get();
         $customer = Customer::with('program')->select('program_id',DB::raw('count(program_id) as total'))->groupBy('program_id')->get();
-        $order = Order::with('status')->select('status_id', DB::raw('count(status_id) as total'))->groupBy('status_id')->get(); //Booking
-   /*      $order = Order::where('status_id',1)->count(); //Booking
-        $order = Order::where('status_id',2)->count(); //BIchecking
-        $order = Order::where('status_id',8)->count(); //CollectBerkas
-        $order = Order::where('status_id',13)->count(); //Akad */
-        return view('dashboard',compact('order','customer','dataOrder','dataGraph'));
+        $order = Order::with('status')->select('status_id', DB::raw('count(status_id) as total'))->groupBy('status_id')->get();
+
+        return view('dashboard',compact('order','customer','dataOrder','dataCustomer'));
     }
 }

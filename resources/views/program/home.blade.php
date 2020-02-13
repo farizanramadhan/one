@@ -25,7 +25,7 @@
                 <div class="col-md-6"> <h4 class="card-title">List of Programs</h4>
                     <p class="card-category">Select action for more information</p></div>
                 <div class="col-md-6"><div class="pull-right ">
-                    <a class="btn btn-warning" href="{{ route('program.create') }}"> Add New Program</a>
+                    <a class="btn btn-info" href="{{ route('program.create') }}"> Add New Program</a>
                  </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     @foreach($data as $item)
                       <tr>
                         <td>{{$item->name}}</td>
-                         <td>{{number_format(floatval(str_replace(',', '.', str_replace('.', '', $item->budget))),2)}}
+                         <td>Rp {{number_format(floatval(str_replace(',', '.', str_replace('.', '', $item->budget))),0)}}
                         <td><a class="btn btn-warning btn-sm btn-round" href="{{ route('program.edit',$item ?? ''->id) }}"><i class="material-icons">edit</i></a></td>
                       </tr>
                     @endforeach

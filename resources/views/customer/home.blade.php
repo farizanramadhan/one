@@ -26,7 +26,7 @@
                 <div class="col-md-6"> <h4 class="card-title">List of Customers</h4>
                     <p class="card-category">Select action for more information</p></div>
                 <div class="col-md-6"><div class="pull-right ">
-                    <a class="btn btn-warning" href="{{ route('customer.create') }}"> Add New Customer</a>
+                    <a class="btn btn-info" href="{{ route('customer.create') }}"> Add New Customer</a>
                  </div></div>
             </div>
             <div class="card-body">

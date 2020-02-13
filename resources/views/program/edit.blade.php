@@ -35,7 +35,7 @@
                 </div>
               </div>
               <a class="btn btn-warning btn-sm pull-left" href="{{url('program')}}">Back</a> &nbsp;
-              <button type="submit" class="btn btn-success btn-sm pull-right">Update Profile</button>
+              <button type="submit" class="btn btn-info btn-sm pull-right">Update Profile</button>
               <div class="clearfix"></div>
             </form>
           </div>

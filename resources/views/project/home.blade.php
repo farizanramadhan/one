@@ -27,7 +27,7 @@
                 <div class="col-md-6"> <h4 class="card-title">List of Projects</h4>
                     <p class="card-category">Select action for more information</p></div>
                 <div class="col-md-6"><div class="pull-right ">
-                    <a class="btn btn-warning" href="{{ route('project.create') }}"> Add New Project</a>
+                    <a class="btn btn-info" href="{{ route('project.create') }}"> Add New Project</a>
                  </div>
                 </div>
             </div>
@@ -38,7 +38,6 @@
                     <th>Project Name
                     <th>Address
                     <th>Availability
-                    <th>Description
                     <th>Action
                   </thead>
                   <tbody>
@@ -47,7 +46,6 @@
                         <td>{{$item->name}}</td>
                         <td>{{$item->address}}</td>
                         <td>{{$item->kavling->where('status_id',14)->count(). '/' .$item->kavling->count()}}</td>
-                        <td>{{$item->description}}</td>
                         <td><a class="btn btn-warning btn-sm btn-round" href="{{ route('project.edit',$item ?? ''->id) }}"><i class="material-icons">edit</i></a></td>
                       </tr>
                     @endforeach

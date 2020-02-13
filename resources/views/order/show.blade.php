@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-md-6"><div class="pull-right">
                     @if ($order->status_id != 13 && $order->status_id != 10 && $order->status_id != 11 )
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Change Status</button>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Change Status</button>
                     @endif
                 </div>
                 </div>

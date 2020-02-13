@@ -92,7 +92,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Penghasilan</label>
-                    <input type="text" class="form-control" name="income" onfocusin="removemoney(this, event)" onfocusout="money(this, event)" value="{{$customer->income}}" disabled>
+                    <input type="text" class="form-control" name="income" value="{{number_format(floatval(str_replace(',', '.', str_replace('.', '', $customer->income))),0)}}" disabled>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -128,7 +128,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div style="display:inline-block;width:80%;overflow-y:auto;">
+                        <div style="display:inline-block;width:100%;overflow-y:auto;">
                             <ul class="timeline timeline-horizontal">
                                 @foreach ($listStatus as $item)
                                 <li class="timeline-item">

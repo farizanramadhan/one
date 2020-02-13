@@ -27,7 +27,7 @@
                 <div class="col-md-6"> <h4 class="card-title">List of Order</h4>
                     <p class="card-category">Select action for more information</p></div>
                 <div class="col-md-6"><div class="pull-right ">
-                    <a class="btn btn-warning" href="{{ route('order.create') }}"> Add New Order</a>
+                    <a class="btn btn-info" href="{{ route('order.create') }}"> Add New Order</a>
                  </div>
                 </div>
             </div>
