@@ -3,7 +3,10 @@
 @section('page-title')
   Projects Management
 @endsection
-
+@push('style')
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+@endpush
 @section('content')
   <div class="content">
     <div class="container-fluid">
@@ -33,7 +36,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table  w-100" id="myTable">
+                <table class="table dt-responsive" id="myTable">
                   <thead class=" text-primary">
                     <th>Project Name
                     <th>Address
@@ -60,11 +63,15 @@
   </div>
 @endsection
 @push('script')
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 <script type="text/javascript">
-    $(document).ready( function () {
-    /*   $('#myTable').DataTable({
-          responsive: true
-        }); */
-    } );
-  </script>
+  $(document).ready( function () {
+     $('#myTable').DataTable({
+        responsive: true
+      });
+  } );
+</script>
 @endpush

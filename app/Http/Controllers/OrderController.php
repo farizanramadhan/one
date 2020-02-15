@@ -21,7 +21,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $data = Order::paginate('20');
+        $data = Order::all();
         return view('order.home',compact('data'));
     }
 

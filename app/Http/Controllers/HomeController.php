@@ -36,10 +36,13 @@ class HomeController extends Controller
         foreach ($Customer as $key) {
             $dataCustomer[$key->x-1] = $key;
         }
-        $top10Kecamatan = Customer::with('distrik')->select('distric',DB::raw('count(distric) as total'))->orderBy('total','DESC')->groupBy('distric')->limit(10)->get();
+        $top10Kecamatan = DB::table('top_10_kecamatan')->get();
+        $top10KecamatanVal = $top10Kecamatan->pluck('jumlah');
+        $top10KecamatanLbl = $top10Kecamatan->pluck('name');
+        /* $top10Kecamatan = Customer::with('distrik')->select('distric',DB::raw('count(distric) as total'))->orderBy('total','DESC')->groupBy('distric')->limit(10)->get(); */
         $customer = Customer::with('program')->select('program_id',DB::raw('count(program_id) as total'))->groupBy('program_id')->get();
         $order = Order::with('status')->select('status_id', DB::raw('count(status_id) as total'))->groupBy('status_id')->get();
 
-        return view('dashboard',compact('order','customer','dataOrder','dataCustomer'));
+        return view('dashboard',compact('order','customer','dataOrder','dataCustomer','top10KecamatanVal','top10KecamatanLbl'));
     }
 }

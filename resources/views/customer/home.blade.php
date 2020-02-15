@@ -3,7 +3,10 @@
 @section('page-title')
   Customers Management
 @endsection
-
+@push('style')
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+@endpush
 @section('content')
   <div class="content">
     <div class="container-fluid">
@@ -30,14 +33,14 @@
                  </div></div>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
+                 <div class="table-responsive">
+                    <table class="table dt-responsive" id="myTable">
                     <thead >
-                        <th>Full Name
-                        <th>Phone
-                        <th>Email
-                        <th>Address
-                        <th>Action
+                        <th>Full Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Action</th>
                         </thead>
                     <tbody>
                         @foreach($customers as $customer)
@@ -53,8 +56,8 @@
                         @endforeach
                     </tbody>
                     </table>
-                </div>
-               <div style="float: right;">{!! $customers->render() !!}</div>
+                 </div> 
+           {{--     <div style="float: right;">{!! $customers->render() !!}</div> --}}
             </div>
           </div>
         </div>
@@ -63,12 +66,15 @@
   </div>
 @endsection
 @push('script')
-
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 <script type="text/javascript">
   $(document).ready( function () {
-  /*   $('#myTable').DataTable({
+     $('#myTable').DataTable({
         responsive: true
-      }); */
+      });
   } );
 </script>
 @endpush

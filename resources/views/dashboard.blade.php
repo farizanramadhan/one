@@ -171,7 +171,58 @@
             }
           }
         });
+        //outstanding barchart
+        var top10KecamatanVal = <?php echo $top10KecamatanVal; ?>;
+        var top10KecamatanLbl = <?php echo $top10KecamatanLbl; ?>;
+        var ctx = document.getElementById("toptenloc");
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+            datasets: [{
+                data: top10KecamatanVal,
+                backgroundColor:
+                 'rgba(255, 255, 255, 1)',
+
+            }],
+            labels: top10KecamatanLbl,
+            },
+            options: {
+                scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: false,
+                  fontColor: 'rgba(255, 255, 255, 0.8)',
+                },
+                gridLines : {
+                    color : 'rgba(255, 255, 255, 0.5)',
+                }
+              }],
+              xAxes: [{
+                display: true,
+                 ticks:{
+                   source:'data',
+                   fontColor: "white",
+                   },
+                   type: 'category',
+                   distribution: 'series'
+                  }]
+            },
+                legend: {
+                    display: false,
+
+                },
+                plugins: {
+                datalabels: false
+                },
+                title: {
+                display: false,
+                text:  'Top 10 Kecamatan'
+                }
+            }
+        });
       </script>
+
+
       <script>
         var order = <?php echo json_encode($dataOrder) ?> ;
         var ctx = document.getElementById("orderchart");

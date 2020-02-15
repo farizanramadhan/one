@@ -270,10 +270,10 @@
         }
     });
   }
-    $(document).ready(function() {
+   /* $(document).ready(function() {
 
 
-     /*    md.initDashboardPageCharts(); */
+         md.initDashboardPageCharts();
 
         $sidebar = $('.sidebar');
         $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -435,7 +435,7 @@
 
         });
 
-    });
+    }); */
   </script>
   @stack('script')
 </html>
