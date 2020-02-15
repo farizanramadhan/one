@@ -18,6 +18,7 @@ Route::get('/', function(){
 Route::get('dashboard', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
+    
     Route::get('user/updaterole/{id}','UserController@updateRole')->name('user.updaterole');
     Route::get('customer/getktp', 'CustomerController@getKtp')->name('customer.getKtp');
     Route::post('customer/getcity', 'CustomerController@getCity')->name('customer.getCity');
