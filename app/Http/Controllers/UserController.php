@@ -97,10 +97,10 @@ class UserController extends Controller
     public function updateRole($id)
     {
         $user = User::findOrFail($id);
-         if ($user->role) {
-           $user->update(array('role' => 0));
+         if ($user->status) {
+           $user->update(array('status' => 0));
         }else{
-           $user->update(array('role' => 1));
+           $user->update(array('status' => 1));
         }
         return $user;
     }

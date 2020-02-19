@@ -38,9 +38,9 @@ Users Management
                                         <td> {{$item->phone}}
                                         <td> {{$item->role == 1 ? "Admin" : ($item->role == 2 ? "Sales" : ($item->role == 3 ? "Marketing" : "Undefined")) }}
                                         <td>@if ($item->status)
-                                            <a class="btn btn-danger btn-sm btn-round" href="#" onclick="updateRole('{{$item->id}}',this)" data-toggle="tooltip" title="Disable"><i class="material-icons">lock</i></a>
+                                            <a class="btn btn-success btn-sm btn-round" href="#" onclick="updateRole('{{$item->id}}',this)" data-toggle="tooltip" title="Disable"><i class="material-icons">lock_open</i></a>
                                         @else
-                                            <a class="btn btn-success btn-sm btn-round" href="#" onclick="updateRole('{{$item->id}}',this)"data-toggle="tooltip" title="Enable"><i class="material-icons">lock</i></a>
+                                            <a class="btn btn-danger btn-sm btn-round" href="#" onclick="updateRole('{{$item->id}}',this)"data-toggle="tooltip" title="Enable"><i class="material-icons">lock</i></a>
                                         @endif
                                         <td> <a class="btn btn-warning btn-sm btn-round" href="{{route('user.edit',$item->id)}}"><i class="material-icons">search</i></a>
                                     </tr>
@@ -83,12 +83,12 @@ function updateRole(id,row) {
                 type: "GET",
                 url: "{{url('user/updaterole')}}/" + id,
                 success: function (data) {
-                    if(data.role){
+                    if(data.status == 1){
                         Swal.fire('Unlocked','User has been unlocked.','success');
-                        $(row).parents("td").last().html('<a class="btn btn-danger btn-sm" href="#" onclick="updateRole('+data.id+',this)" data-toggle="tooltip" title="Disable"><i class="material-icons">lock</i><div class="ripple-container"></div></a>');
+                        $(row).parents("td").last().html('<a class="btn btn-success btn-sm btn-round" href="#" onclick="updateRole('+data.id+',this)" data-toggle="tooltip" title="Disable"><i class="material-icons">lock_open</i><div class="ripple-container"></div></a>');
                     }else{
                         Swal.fire('Locked','User has been Locked.','success');
-                        $(row).parents("td").last().html('<a class="btn btn-success btn-sm" href="#" onclick="updateRole('+data.id+',this)" data-toggle="tooltip" title="Disable"><i class="material-icons">lock_open</i><div class="ripple-container"></div></a>');
+                        $(row).parents("td").last().html('<a class="btn btn-danger btn-sm btn-round" href="#" onclick="updateRole('+data.id+',this)" data-toggle="tooltip" title="Enable"><i class="material-icons">lock</i><div class="ripple-container"></div></a>');
                     }
                 },
                 error: function (err) {

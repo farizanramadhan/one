@@ -171,6 +171,7 @@
             }
           }
         });
+        
         //outstanding barchart
         var top10KecamatanVal = <?php echo $top10KecamatanVal; ?>;
         var top10KecamatanLbl = <?php echo $top10KecamatanLbl; ?>;
