@@ -27,12 +27,26 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Budget</label>
                     <input type="text" name="budget" class="form-control"value="{{$program->budget}}" onfocusin="removemoney(this, event)" onfocusout="money(this, event)" >
                   </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="select bmd-label-floating">Project</label>
+                      <select name="project_id" class="form-control">
+                          @foreach ($project as $item)
+                          @if ($item->id == $program->project_id)
+                              <option selected value="{{$item->id}}">{{$item->name}}</option>
+                          @else
+                              <option value="{{$item->id}}">{{$item->name}}</option>
+                          @endif
+                          @endforeach
+                      </select>
+                    </div>
+                  </div>
               </div>
               <a class="btn btn-warning btn-sm pull-left" href="{{url('program')}}">Back</a> &nbsp;
               <button type="submit" class="btn btn-info btn-sm pull-right">Update Profile</button>

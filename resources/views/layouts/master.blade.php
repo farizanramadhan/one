@@ -93,6 +93,12 @@
                 <p>Sumber Informasi</p>
                 </a>
             </li>
+            <li class="nav-item {{ Request::is('customerjob*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('customerjob.index')}}">
+                <i class="material-icons">work</i>
+                <p>Pekerjaan</p>
+                </a>
+            </li>
             @if (Auth::user()->role != 3)
             <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('user.index')}}">

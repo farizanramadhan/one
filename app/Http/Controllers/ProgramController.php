@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use App\Program;
+use App\Project;
 use Illuminate\Http\Request;
 
 class ProgramController extends Controller
@@ -25,7 +26,8 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        return view('program.create');
+        $project = Project::all();
+        return view('program.create',compact('project'));
     }
 
     /**
@@ -40,6 +42,7 @@ class ProgramController extends Controller
         $data= Program::create([
             'name' => $request->name,
             'budget' =>  $budget,
+            'project_id' =>  $project_id,
             'created_by' =>  Auth::user()->email,
         ]);
         return redirect()->route('program.index')
@@ -65,7 +68,9 @@ class ProgramController extends Controller
      */
     public function edit(Program $program)
     {
-        return view('program.edit',compact('program'));
+        $project = Project::all();
+
+        return view('program.edit',compact('program','project'));
     }
 
     /**
@@ -80,6 +85,7 @@ class ProgramController extends Controller
         $budget = str_replace('.', '', $request->budget);
         $request->validate([
             'name' => 'required',
+            'project_id' => 'required',
             'budget' => 'required',
         ]);
         $program->update(['name' => $request->name, 'budget' => $budget]);

@@ -11,6 +11,7 @@ class Customer extends Model
       'no_npwp',
       'full_name',
       'address',
+      'customer_job_id',
       'province',
       'city',
       'distric',
@@ -21,6 +22,7 @@ class Customer extends Model
       'program_id',
       'status',
       'description',
+      'type_data',
       'created_by',
       'updated_by',
   ];
@@ -31,6 +33,10 @@ class Customer extends Model
     public function program()
     {
         return $this->belongsTo('App\Program');
+    }
+    public function customerJob()
+    {
+        return $this->belongsTo('App\CustomerJob');
     }
     public function distrik()
     {

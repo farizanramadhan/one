@@ -41,7 +41,6 @@ class ProjectController extends Controller
         $data= Project::create([
             'name' => $request->name,
             'address' =>  $request->address,
-            'availability' => $request->availability,
             'description' =>  $request->description,
             'created_by' =>  Auth::user()->email,
         ]);
@@ -83,7 +82,7 @@ class ProjectController extends Controller
         $request->validate([
             'name' => 'required',
             'address' => 'required',
-            'availability' => 'required',
+            
             'description' => 'required',
         ]);
         $project->update($request->all());

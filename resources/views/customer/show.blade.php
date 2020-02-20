@@ -47,12 +47,18 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Alamat</label>
                     <input type="text" name="address" class="form-control" value="{{$customer->address}}" disabled>
                   </div>
                 </div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="select bmd-label-floating">Pekerjaan</label>
+                        <input type="text" name="address" class="form-control" value="{{$customer->customerJob->name}}" disabled>
+                    </div>
+                  </div> 
               </div>
               <div class="row">
                 <div class="col-md-4">

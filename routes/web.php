@@ -18,7 +18,7 @@ Route::get('/', function(){
 Route::get('dashboard', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
-    
+
     Route::get('user/updaterole/{id}','UserController@updateRole')->name('user.updaterole');
     Route::get('customer/getktp', 'CustomerController@getKtp')->name('customer.getKtp');
     Route::post('customer/getcity', 'CustomerController@getCity')->name('customer.getCity');
@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('customer','CustomerController');
     Route::resource('user','UserController');
     Route::resource('kavling','KavlingController');
+    Route::resource('customerjob','CustomerJobController');
     Route::resource('order','OrderController');
     Route::resource('program','ProgramController');
     Route::resource('project','ProjectController');

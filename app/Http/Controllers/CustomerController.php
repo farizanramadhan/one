@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\CustomerJob;
 use App\Program;
 use App\Project;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        return Auth::user();
       $customers = Customer::with('distrik')->get();
       /* $customers = Customer::all();
  */
@@ -34,7 +36,8 @@ class CustomerController extends Controller
     {
         $provinsi = Indonesia::allProvinces();
         $programs = Program::all();
-        return view('customer.create',compact('provinsi','programs'));
+        $customerJob = CustomerJob::all();
+        return view('customer.create',compact('provinsi','programs','customerJob'));
     }
 
     /**
@@ -57,6 +60,7 @@ class CustomerController extends Controller
             'no_npwp' => $request->no_npwp,
             'full_name' => $request->full_name,
             'address' =>  $request->address,
+            'customer_job_id' =>  $request->customer_job_id,
             'province' =>  $request->province,
             'city' =>  $request->city,
             'distric' =>  $request->distric,
@@ -67,6 +71,7 @@ class CustomerController extends Controller
             'program_id' =>  $request->program_id,
             'description' =>  $request->description,
             'created_by' =>  Auth::user()->email,
+            'type_data' =>  Auth::user()->role,
         ]);
 
 
@@ -98,11 +103,12 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
+
         $projects = Project::all();
         $province = Indonesia::findProvince($customer->province);
         $city = Indonesia::findCity($customer->city);
         $district = Indonesia::findDistrict($customer->distric);
-          $listStatus =  json_decode(json_encode($customer->status), FALSE);
+        $listStatus =  json_decode(json_encode($customer->status), FALSE);
 
         return view('customer.show',compact('customer','province','city','district','projects','listStatus'));
     }
@@ -117,11 +123,12 @@ class CustomerController extends Controller
     {
 
       /*   return $customer; */
+      $customerJob = CustomerJob::all();
         $programs = Program::all();
         $provinsi = Indonesia::allProvinces();
         $city = Indonesia::findCity($customer->city);
         $district = Indonesia::findDistrict($customer->distric);
-        return view('customer.edit',compact('customer','provinsi','programs','city','district'));
+        return view('customer.edit',compact('customer','provinsi','programs','city','district','customerJob'));
     }
 
     /**

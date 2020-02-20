@@ -29,7 +29,7 @@
                 <div class="col-md-6"> <h4 class="card-title">List of Programs</h4>
                     <p class="card-category">Select action for more information</p></div>
                 <div class="col-md-6"><div class="pull-right ">
-                    <a class="btn btn-info" href="{{ route('program.create') }}"> Add New Program</a>
+                    <a class="btn btn-info" href="{{ route('customerjob.create') }}"> Add New Job</a>
                  </div>
                 </div>
             </div>
@@ -37,19 +37,14 @@
               <div class="table-responsive">
                 <table class="table dt-responsive" id="myTable">
                   <thead class=" text-primary">
-                    <th>Project
                     <th>Name
-                    <th>Budget
                     <th width="20%">Action
                   </thead>
                   <tbody>
                     @foreach($data as $item)
                       <tr>
-                        <td>{{$item->project->name}}</td>
                         <td>{{$item->name}}</td>
-                         <td>Rp {{number_format(floatval(str_replace(',', '.', str_replace('.', '', $item->budget))),0)}}
-
-                        <td><a class="btn btn-warning btn-sm btn-round" href="{{ route('program.edit',$item ?? ''->id) }}"><i class="material-icons">edit</i></a></td>
+                        <td><a class="btn btn-warning btn-sm btn-round" href="{{ route('customerjob.edit',$item ?? ''->id) }}"><i class="material-icons">edit</i></a></td>
                       </tr>
                     @endforeach
                   </tbody>
